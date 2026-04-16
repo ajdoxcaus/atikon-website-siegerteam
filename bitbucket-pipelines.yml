@@ -1,0 +1,28 @@
+image: node:20
+
+definitions:
+  steps:
+    - step: &build
+        name: Build Mockup
+        caches:
+          - node
+        script:
+          - npm ci
+          - npm run build
+        artifacts:
+          - dist/**
+
+    - step: &deploy-main
+        size: 2x
+        name: Deploy Main Mockup
+        runs-on:
+          - self.hosted
+          - linux
+        script:
+          - rsync -az --delete -e "ssh -p ${SSH_PORT}" dist/ "${SSH_USER}@${SSH_HOST}:${DEPLOY_PATH}"
+
+pipelines:
+  branches:
+    main:
+      - step: *build
+      - step: *deploy-main
