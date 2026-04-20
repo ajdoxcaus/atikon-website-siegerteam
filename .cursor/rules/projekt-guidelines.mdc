@@ -1,0 +1,18 @@
+---
+description: Projektrichtlinien und Produktinhalte aus den Design- und Produktdokumenten
+alwaysApply: true
+---
+
+# Projekt-Guidelines
+
+Beachte bei jeder Aufgabe die Dokumente im Ordner `src/docs/ui/`:
+
+- **Atikon_Manual_fürWebsiteContest_2026.pdf** — Design-Richtlinien, Layout-Vorgaben und UI-Spezifikationen
+- **Portfolio_DE_2026.pdf** — Produktspezifische Inhalte, Texte und Daten
+
+## Regeln
+
+- Lies die relevanten Dokumente via `@src/docs/ui/`, bevor du UI-Komponenten erstellst oder änderst.
+- Halte dich an die im Manual definierten Farben, Schriften, Abstände und Layouts.
+- Verwende die Produkttexte und -daten aus dem Portfolio als Inhaltsquelle.
+- Weiche nicht ohne explizite Anweisung von den Guidelines ab.
