@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/Button";
 import { DropShape } from "../ui/DropShape";
 
-export function CTASection() {
+export function AIStudioCTA() {
   return (
     <section id="termin" className="relative overflow-hidden bg-atikon-violet">
       <DropShape
@@ -17,23 +17,23 @@ export function CTASection() {
       />
 
       <div className="container-max py-20 lg:py-28 text-center relative z-10">
-        <h2 className="text-white text-[clamp(1.5rem,3.5vw,2.5rem)] leading-tight font-extrabold max-w-3xl mx-auto">
-          Lassen Sie uns zeigen, welcher Einstieg in den taxHub Ihrer Kanzlei
-          jetzt den größten Vorsprung bringt.
+        <h2 className="text-white text-[clamp(1.35rem,3.2vw,2.25rem)] leading-tight font-extrabold max-w-3xl mx-auto">
+          Sehen Sie in 30 Minuten, wie KI Ihre Kanzlei konkret entlasten kann
+          – ohne Verpflichtung.
         </h2>
         <p className="mt-4 text-white/60 text-lg max-w-lg mx-auto">
-          30 Minuten, die sich lohnen. Unverbindlich und persönlich.
+          Persönliche Demo mit einem Berater, der Ihre Branche versteht.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Button to="#termin" variant="primary" size="lg">
-            Termin buchen
+            Demo anfordern
             <ArrowRight size={20} />
           </Button>
           <a
-            href="#plattform"
+            href="#anwendungsfaelle"
             className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 px-10 py-4 text-lg font-semibold text-white transition-colors hover:bg-white/10 hover:border-white/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
-            taxHub ansehen
+            Anwendungsfälle ansehen
           </a>
         </div>
       </div>

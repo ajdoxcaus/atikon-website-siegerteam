@@ -4,7 +4,6 @@ import {
   Mail,
   Sparkles,
   BarChart3,
-  Bell,
 } from "lucide-react";
 import { DropShape } from "../ui/DropShape";
 
@@ -32,7 +31,7 @@ export function HeroDashboard() {
       <DropShape
         color="violet"
         size="lg"
-        className="absolute -top-10 -right-6 opacity-8 rotate-45"
+        className="absolute -top-10 -right-6 opacity-10 rotate-45"
       />
       <DropShape
         color="orange"
@@ -72,21 +71,6 @@ export function HeroDashboard() {
         </div>
       </div>
 
-      {/* Floating notification */}
-      <div
-        className="absolute -bottom-5 -left-4 sm:-left-6 rounded-xl border border-neutral-200/80 bg-white px-4 py-3 shadow-md animate-fade-up"
-        style={{ animationDelay: "600ms" }}
-      >
-        <div className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-atikon-orange/10">
-            <Bell size={14} className="text-atikon-orange" />
-          </div>
-          <div>
-            <p className="text-[11px] text-neutral-400 leading-none">Neuer Lead</p>
-            <p className="mt-0.5 text-sm font-semibold text-atikon-black leading-tight">Steuerberatung Müller GmbH</p>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

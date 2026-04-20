@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, ArrowRight } from "lucide-react";
+import { Mail, Phone, ArrowRight, LogIn } from "lucide-react";
 
 const FOOTER_LINKS = {
   Plattform: [
@@ -36,6 +36,9 @@ export function Footer() {
               <br />
               Vorsprung, der bleibt.
             </p>
+            <p className="text-xs text-white/40 pt-1">
+              taxHub – die Plattform für Steuerkanzleien
+            </p>
             <div className="flex flex-col gap-2 pt-2 text-sm text-white/80">
               <a href="tel:+4373261126" className="flex items-center gap-2 hover:text-white transition-colors">
                 <Phone size={14} />
@@ -61,7 +64,7 @@ export function Footer() {
                       to={to}
                       className="group flex items-center gap-1.5 text-sm text-white/70 transition-colors hover:text-white"
                     >
-                      <ArrowRight size={12} className="text-atikon-orange opacity-0 transition-opacity group-hover:opacity-100" />
+                      <ArrowRight size={12} className="text-atikon-orange opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true" />
                       {label}
                     </Link>
                   </li>
@@ -76,7 +79,14 @@ export function Footer() {
           <p className="text-xs text-white/40">
             © {new Date().getFullYear()} Atikon EG. Alle Rechte vorbehalten.
           </p>
-          <div className="flex gap-6 text-xs text-white/40">
+          <div className="flex items-center gap-6 text-xs text-white/40">
+            <a
+              href="#login"
+              className="flex items-center gap-1.5 hover:text-white/70 transition-colors"
+            >
+              <LogIn size={12} />
+              Login
+            </a>
             <Link to="/impressum" className="hover:text-white/70 transition-colors">Impressum</Link>
             <Link to="/datenschutz" className="hover:text-white/70 transition-colors">Datenschutz</Link>
             <Link to="/agb" className="hover:text-white/70 transition-colors">AGB</Link>

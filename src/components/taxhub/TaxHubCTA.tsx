@@ -1,8 +1,8 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CalendarCheck } from "lucide-react";
 import { Button } from "../ui/Button";
 import { DropShape } from "../ui/DropShape";
 
-export function CTASection() {
+export function TaxHubCTA() {
   return (
     <section id="termin" className="relative overflow-hidden bg-atikon-violet">
       <DropShape
@@ -18,8 +18,8 @@ export function CTASection() {
 
       <div className="container-max py-20 lg:py-28 text-center relative z-10">
         <h2 className="text-white text-[clamp(1.5rem,3.5vw,2.5rem)] leading-tight font-extrabold max-w-3xl mx-auto">
-          Lassen Sie uns zeigen, welcher Einstieg in den taxHub Ihrer Kanzlei
-          jetzt den größten Vorsprung bringt.
+          Lassen Sie uns gemeinsam herausfinden, welche Module den größten
+          Hebel für Ihre Kanzlei haben.
         </h2>
         <p className="mt-4 text-white/60 text-lg max-w-lg mx-auto">
           30 Minuten, die sich lohnen. Unverbindlich und persönlich.
@@ -30,10 +30,11 @@ export function CTASection() {
             <ArrowRight size={20} />
           </Button>
           <a
-            href="#plattform"
+            href="#module"
             className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 px-10 py-4 text-lg font-semibold text-white transition-colors hover:bg-white/10 hover:border-white/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
-            taxHub ansehen
+            <CalendarCheck size={18} aria-hidden="true" />
+            Module ansehen
           </a>
         </div>
       </div>

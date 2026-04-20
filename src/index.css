@@ -47,8 +47,8 @@
   --leading-body: 1.6;
 
   /* ── Spacing scale ── */
-  --spacing-section: 5rem;
-  --spacing-section-lg: 7.5rem;
+  --spacing-section: 4.5rem;
+  --spacing-section-lg: 5.5rem;
   --spacing-card: 1.5rem;
   --spacing-card-lg: 2rem;
 
@@ -340,11 +340,80 @@
   animation: fade-in 0.5s ease both;
 }
 
+/* Scroll-triggered: only fire animation when element enters viewport */
+@supports (animation-timeline: view()) {
+  .animate-fade-up,
+  .animate-fade-in {
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-delay: 0ms !important;
-    transition-duration: 0.01ms !important;
+  .animate-fade-up,
+  .animate-fade-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ── Hero puzzle assembly ── */
+
+@keyframes puzzle-piece-in {
+  from {
+    opacity: 0;
+    transform: var(--puzzle-from) scale(0.7);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes hero-glow {
+  0%   { box-shadow: 0 0 0 0 rgba(65, 0, 152, 0); }
+  50%  { box-shadow: 0 0 40px 8px rgba(65, 0, 152, 0.12); }
+  100% { box-shadow: 0 0 0 0 rgba(65, 0, 152, 0); }
+}
+
+@keyframes hero-stagger-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@utility animate-hero-stagger {
+  animation: hero-stagger-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.puzzle-piece {
+  animation: puzzle-piece-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.puzzle-glow {
+  animation: hero-glow 1.2s ease 1.35s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-stagger,
+  .puzzle-piece {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  .puzzle-glow {
+    animation: none !important;
   }
 }
 
@@ -357,8 +426,8 @@
     --text-hero: 2.75rem;
     --text-h1: 2.25rem;
     --text-h2: 1.75rem;
-    --spacing-section: 4rem;
-    --spacing-section-lg: 5.5rem;
+    --spacing-section: 3.5rem;
+    --spacing-section-lg: 4.5rem;
   }
 }
 
@@ -368,8 +437,8 @@
     --text-h1: 1.75rem;
     --text-h2: 1.375rem;
     --text-h3: 1.25rem;
-    --spacing-section: 3rem;
-    --spacing-section-lg: 4rem;
+    --spacing-section: 2.5rem;
+    --spacing-section-lg: 3rem;
     --brand-bar-width: 20px;
   }
 }

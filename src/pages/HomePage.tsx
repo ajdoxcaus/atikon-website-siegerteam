@@ -12,13 +12,13 @@ export function HomePage() {
   return (
     <>
       <HeroSection />
-      <TrustStrip />
       <PlatformSection />
       <ComparisonSection />
       <ModulesOverview />
       <FeaturedSection />
       <ProcessSection />
       <SocialProof />
+      <TrustStrip />
       <CTASection />
     </>
   );

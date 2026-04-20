@@ -35,8 +35,8 @@ export function ModulesOverview() {
         {modules.map((mod) => {
           const Icon = iconMap[mod.icon] ?? Globe;
           return (
-            <Link key={mod.id} to={mod.link} className="group block no-underline">
-              <Card hover>
+            <Link key={mod.id} to={mod.link} className="group block no-underline h-full">
+              <Card hover className="h-full">
                 <div className="flex items-start gap-4">
                   <div className="shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-atikon-violet/8 text-atikon-violet">
                     <Icon size={20} />
