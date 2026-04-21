@@ -3,26 +3,26 @@ import { SectionShell } from "../ui/SectionShell";
 import { Button } from "../ui/Button";
 
 const ARCHIVE = [
-  "KI-Schulung statt Kanzlei-Chaos \u2013 Ihre Pflicht nach dem EU AI Act",
+  "KI-Schulung statt Kanzlei-Chaos – Ihre Pflicht nach dem EU AI Act",
   "Digitales Controlling mit KI als Sparringspartner",
   "So nutzen Sie als Steuerberater ChatGPT besser als 99 % Ihrer Mitbewerber",
   "Als Steuerberater erfolgreich mit Social Media starten",
-  "Nachfolgel\u00f6sungen f\u00fcr KMUs \u2013 Steuerberater als Wegweiser",
-  "Die 5 gr\u00f6\u00dften Digitalisierungsfehler in Steuerkanzleien",
+  "Nachfolgelösungen für KMUs – Steuerberater als Wegweiser",
+  "Die 5 größten Digitalisierungsfehler in Steuerkanzleien",
   "Zeitfresser im Griff",
-  "A-Mandanten wie am Flie\u00dfband",
-  "Barrierefrei oder Bu\u00dfgeld? Website fit f\u00fcr 2025!",
+  "A-Mandanten wie am Fließband",
+  "Barrierefrei oder Bußgeld? Website fit für 2025!",
   "Warum du keine TOP Mitarbeiter bekommst",
-  "Power-Up E-Mail-Marketing: Strategien f\u00fcr maximale Wirkung",
+  "Power-Up E-Mail-Marketing: Strategien für maximale Wirkung",
   "Mitarbeitermarketing in Steuerberatungskanzleien",
-  "Printmedien \u2013 \u00fcberholt oder untersch\u00e4tzt?",
-  "Social Media \u2013 wo Employer Branding zum Abenteuer wird!",
-  "Mensch \u00e4rgere dich nicht in der Google-Welt",
-  "Zur\u00fcck in die Steuerzukunft",
-  "Die HR-Aufw\u00e4rtsspirale: Der Weg zur L\u00f6sung",
+  "Printmedien – überholt oder unterschätzt?",
+  "Social Media – wo Employer Branding zum Abenteuer wird!",
+  "Mensch ärgere dich nicht in der Google-Welt",
+  "Zurück in die Steuerzukunft",
+  "Die HR-Aufwärtsspirale: Der Weg zur Lösung",
   "Mitarbeiter:innen-Suche im digitalen Zeitalter",
   "Warum Ihre Website ein Makeover braucht",
-  "Bewertungen bei Google & Co \u2013 Wie stehts um Ihren Ruf?",
+  "Bewertungen bei Google & Co – Wie stehts um Ihren Ruf?",
 ];
 
 export function WebinareArchiv() {
@@ -31,8 +31,8 @@ export function WebinareArchiv() {
       <div className="mx-auto max-w-3xl text-center mb-10">
         <h2>Webinar-Archiv</h2>
         <p className="mt-4 text-neutral-600 text-lg">
-          Entdecken Sie \u00fcber 20 kostenfreie Webinare, jederzeit abrufbar und
-          gef\u00fcllt mit wertvollem Praxiswissen f\u00fcr Ihre Kanzlei.
+          Entdecken Sie über 20 kostenfreie Webinare, jederzeit abrufbar und
+          gefüllt mit wertvollem Praxiswissen für Ihre Kanzlei.
         </p>
       </div>
 

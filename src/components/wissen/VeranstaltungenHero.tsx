@@ -14,12 +14,12 @@ export function VeranstaltungenHero() {
 
             <h1 className="mt-6 text-[clamp(2rem,4.5vw,3.25rem)] leading-[1.08] font-extrabold tracking-tight">
               <span className="text-atikon-black">Veran&shy;staltungen </span>
-              <span className="text-atikon-orange">f\u00fcr Steuerberater.</span>
+              <span className="text-atikon-orange">für Steuerberater.</span>
             </h1>
 
             <p className="mt-6 text-lg leading-relaxed text-neutral-600 max-w-md">
               Treffen Sie Atikon auf Messen, Kongressen und Fachtagungen.
-              Entdecken Sie aktuelle Trends und kn\u00fcpfen Sie wertvolle Kontakte.
+              Entdecken Sie aktuelle Trends und knüpfen Sie wertvolle Kontakte.
             </p>
           </div>
 

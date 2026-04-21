@@ -19,18 +19,18 @@ const CATEGORIES = [
 
 const TIPS: Tip[] = [
   {
-    title: "So nutzen Sie die HR-Aufw\u00e4rtsspirale f\u00fcr Ihre Talentegewinnung",
+    title: "So nutzen Sie die HR-Aufwärtsspirale für Ihre Talentegewinnung",
     excerpt: "Passen Sie Ihre Human-Resource-Strategie an die dynamischen Anforderungen des Arbeitsmarktes an.",
     categories: ["Personalsuche"],
   },
   {
-    title: "St\u00fcrmische Zeiten: Digital gewinnt!",
-    excerpt: "Pers\u00f6nlicher Kontakt ist nicht immer m\u00f6glich \u2013 umso wichtiger ist eine starke digitale Pr\u00e4senz.",
+    title: "Stürmische Zeiten: Digital gewinnt!",
+    excerpt: "Persönlicher Kontakt ist nicht immer möglich – umso wichtiger ist eine starke digitale Präsenz.",
     categories: ["Digitalisierung"],
   },
   {
-    title: "Mitarbeitergewinnung f\u00fcr Steuerberater",
-    excerpt: "Entdecken Sie die effektivsten Strategien gegen den Fachkr\u00e4ftemangel \u2013 von Employer Branding bis Active Sourcing.",
+    title: "Mitarbeitergewinnung für Steuerberater",
+    excerpt: "Entdecken Sie die effektivsten Strategien gegen den Fachkräftemangel – von Employer Branding bis Active Sourcing.",
     categories: ["Personalsuche"],
   },
   {
@@ -39,18 +39,18 @@ const TIPS: Tip[] = [
     categories: ["Homepage & Website"],
   },
   {
-    title: "Kein Erfolg im Recruiting? Die 5 h\u00e4ufigsten Fehler",
+    title: "Kein Erfolg im Recruiting? Die 5 häufigsten Fehler",
     excerpt: "Oft verhindert ein fehlendes Konzept oder eine schlechte Candidate Experience den Bewerbungserfolg.",
     categories: ["Personalsuche"],
   },
   {
     title: "Ist Ihre Website im Internet auffindbar?",
-    excerpt: "Auf welchem Platz erscheint Ihre Website in Suchmaschinenergebnissen? Tipps f\u00fcr bessere Sichtbarkeit.",
+    excerpt: "Auf welchem Platz erscheint Ihre Website in Suchmaschinenergebnissen? Tipps für bessere Sichtbarkeit.",
     categories: ["Homepage & Website"],
   },
   {
     title: "LinkedIn: Neue Wege in der Personalsuche",
-    excerpt: "Nutzen Sie soziale Netzwerke f\u00fcr die Mitarbeitersuche und erschlie\u00dfen Sie neue Kan\u00e4le.",
+    excerpt: "Nutzen Sie soziale Netzwerke für die Mitarbeitersuche und erschließen Sie neue Kanäle.",
     categories: ["Social Media", "Personalsuche"],
   },
   {
@@ -59,17 +59,17 @@ const TIPS: Tip[] = [
     categories: ["Homepage & Website", "Mandantenbindung"],
   },
   {
-    title: "5 Tipps f\u00fcr den digitalen Kanzleimitarbeiter",
+    title: "5 Tipps für den digitalen Kanzleimitarbeiter",
     excerpt: "So sparen Sie mit digitalem Kanzleimarketing wertvolle Zeit im Arbeitsalltag.",
     categories: ["Digitalisierung"],
   },
   {
-    title: "Bewertungen sind gut \u2013 und Sie auch!",
-    excerpt: "Ein \u00dcberblick \u00fcber die Wichtigkeit von Bewertungen und wie man mit diesem Tool richtig umgeht.",
+    title: "Bewertungen sind gut – und Sie auch!",
+    excerpt: "Ein Überblick über die Wichtigkeit von Bewertungen und wie man mit diesem Tool richtig umgeht.",
     categories: ["Homepage & Website", "Mandantenbindung"],
   },
   {
-    title: "Werden Sie f\u00fcr Ihre offenen Stellen bei Google gefunden!",
+    title: "Werden Sie für Ihre offenen Stellen bei Google gefunden!",
     excerpt: "Viele Jobsuchende nutzen Google als erste Anlaufstelle. So optimieren Sie Ihre Stellenangebote.",
     categories: ["Personalsuche", "Homepage & Website"],
   },
@@ -89,23 +89,23 @@ const TIPS: Tip[] = [
     categories: ["Personalsuche", "Homepage & Website"],
   },
   {
-    title: "33 Shades of Social Media \u2013 Kreative Posting-Ideen",
-    excerpt: "Kreative Ideen und Strategien f\u00fcr Social-Media-Posts, die Ihre Kanzlei in Szene setzen.",
+    title: "33 Shades of Social Media – Kreative Posting-Ideen",
+    excerpt: "Kreative Ideen und Strategien für Social-Media-Posts, die Ihre Kanzlei in Szene setzen.",
     categories: ["Social Media"],
   },
   {
     title: "Entspannte Mandanten zum Jahresende",
-    excerpt: "Von der Checkliste zum Jahreswechsel profitieren alle \u2013 so entlasten Sie Ihre Kanzlei.",
+    excerpt: "Von der Checkliste zum Jahreswechsel profitieren alle – so entlasten Sie Ihre Kanzlei.",
     categories: ["Mandantenbindung", "Drucksorten"],
   },
   {
-    title: "Die digitale Zukunft? Sie hat l\u00e4ngst begonnen!",
-    excerpt: "Alles, was sich digitalisieren l\u00e4sst, wird digitalisiert. So bereiten Sie sich vor.",
+    title: "Die digitale Zukunft? Sie hat längst begonnen!",
+    excerpt: "Alles, was sich digitalisieren lässt, wird digitalisiert. So bereiten Sie sich vor.",
     categories: ["Digitalisierung"],
   },
   {
     title: "Crossmedia: Sowohl-als-auch statt Entweder-oder",
-    excerpt: "Konsumverhalten und Interessen Ihrer Mandanten sind vielf\u00e4ltig \u2013 bedienen Sie alle Kan\u00e4le.",
+    excerpt: "Konsumverhalten und Interessen Ihrer Mandanten sind vielfältig – bedienen Sie alle Kanäle.",
     categories: ["Drucksorten", "Mandantenbindung"],
   },
   {
@@ -119,8 +119,8 @@ const TIPS: Tip[] = [
     categories: ["Drucksorten", "Mandantenbindung"],
   },
   {
-    title: "Social Media: Ein Plus f\u00fcr jede Kanzlei",
-    excerpt: "Soziale Netzwerke haben die Marketingwelt l\u00e4ngst im Griff. So starten Sie erfolgreich.",
+    title: "Social Media: Ein Plus für jede Kanzlei",
+    excerpt: "Soziale Netzwerke haben die Marketingwelt längst im Griff. So starten Sie erfolgreich.",
     categories: ["Social Media"],
   },
   {
@@ -129,13 +129,13 @@ const TIPS: Tip[] = [
     categories: ["Mandantenbindung"],
   },
   {
-    title: "Google Ads f\u00fcr Steuerberater",
-    excerpt: "Werbeanzeigen auf Google bringen Sie auf die besten Pl\u00e4tze. So setzen Sie Ihr Budget richtig ein.",
+    title: "Google Ads für Steuerberater",
+    excerpt: "Werbeanzeigen auf Google bringen Sie auf die besten Plätze. So setzen Sie Ihr Budget richtig ein.",
     categories: ["Homepage & Website", "Digitalisierung"],
   },
   {
-    title: "5 geniale Tipps f\u00fcr die Mitarbeitersuche",
-    excerpt: "Ein Inserat in der Zeitung reicht l\u00e4ngst nicht mehr. Moderne Wege der Personalsuche.",
+    title: "5 geniale Tipps für die Mitarbeitersuche",
+    excerpt: "Ein Inserat in der Zeitung reicht längst nicht mehr. Moderne Wege der Personalsuche.",
     categories: ["Personalsuche"],
   },
 ];

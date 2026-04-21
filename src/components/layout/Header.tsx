@@ -81,7 +81,7 @@ const NAV_ITEMS: NavItem[] = [
         icon: Mail,
       },
       {
-        to: "/#module",
+        to: "/social-media",
         label: "Social Media",
         description: "Facebook, Instagram & LinkedIn aus einer Hand.",
         icon: Share2,

@@ -10,7 +10,7 @@ export function WebinareCTA() {
         </h2>
         <p className="mt-4 text-lg text-white/70">
           Mit unserem kostenlosen Newsletter bleiben Sie immer up to date und
-          erfahren alles \u00fcber Marketingnews sowie Trends aus erster Hand.
+          erfahren alles über Marketingnews sowie Trends aus erster Hand.
         </p>
         <div className="mt-8 flex items-center justify-center gap-3">
           <div className="flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-5 py-3 text-sm text-white/60 w-full max-w-xs">

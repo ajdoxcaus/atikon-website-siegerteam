@@ -66,6 +66,11 @@ export function PlatformSection() {
         </p>
       </div>
 
+      {/* Platform mockup */}
+      <div className="mt-14 animate-fade-up" aria-hidden="true">
+        <PlatformMockup />
+      </div>
+
       {/* Benefit cards */}
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {benefits.map((b) => {
@@ -85,11 +90,6 @@ export function PlatformSection() {
             </div>
           );
         })}
-      </div>
-
-      {/* Platform mockup */}
-      <div className="mt-14 animate-fade-up" aria-hidden="true">
-        <PlatformMockup />
       </div>
 
       {/* CTA */}

@@ -61,7 +61,7 @@ const NEWS_ITEMS = [
   {
     title: "Podcast: Webdesigntrends in 2024",
     excerpt:
-      "Die 4. Folge unserer Podcasts \u201EMarketing Süß-Sauer\u201C ist online! Erfahren Sie alles über aktuelle Webdesigntrends.",
+      "Die 4. Folge unserer Podcasts „Marketing Süß-Sauer" ist online! Erfahren Sie alles über aktuelle Webdesigntrends.",
     date: "2024",
   },
   {

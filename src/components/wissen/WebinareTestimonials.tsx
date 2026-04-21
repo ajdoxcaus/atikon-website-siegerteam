@@ -12,7 +12,7 @@ const TESTIMONIALS = [
     name: "Nele Carstens",
   },
   {
-    text: "Sehr gut und praxisnahe gestaltet! Wertvolle Tipps und Tricks f\u00fcr Postings ohne gro\u00dfen Zeitaufwand.",
+    text: "Sehr gut und praxisnahe gestaltet! Wertvolle Tipps und Tricks für Postings ohne großen Zeitaufwand.",
     name: "Gerda Huber",
   },
   {
@@ -24,11 +24,11 @@ const TESTIMONIALS = [
     name: "Teilnehmer:in",
   },
   {
-    text: "Das Webinar war gut strukturiert und verst\u00e4ndlich pr\u00e4sentiert. Klares Verst\u00e4ndnis des Themas erhalten.",
+    text: "Das Webinar war gut strukturiert und verständlich präsentiert. Klares Verständnis des Themas erhalten.",
     name: "Teilnehmer:in",
   },
   {
-    text: "Kurz und knapp f\u00fcr den ersten Einblick alle erforderlichen Informationen erhalten.",
+    text: "Kurz und knapp für den ersten Einblick alle erforderlichen Informationen erhalten.",
     name: "Teilnehmer:in",
   },
   {
@@ -49,7 +49,7 @@ export function WebinareTestimonials() {
     <SectionShell bg="white">
       <SectionHeading
         title="Das sagen Teilnehmende"
-        subtitle="Feedback aus unseren Gipfelst\u00fcrmer-Webinaren."
+        subtitle="Feedback aus unseren Gipfelstürmer-Webinaren."
       />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

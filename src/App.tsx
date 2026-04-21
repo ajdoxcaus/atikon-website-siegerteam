@@ -12,6 +12,7 @@ import { KarrierePage } from "./pages/KarrierePage";
 import { MarketingtippsPage } from "./pages/MarketingtippsPage";
 import { WebinarePage } from "./pages/WebinarePage";
 import { VeranstaltungenPage } from "./pages/VeranstaltungenPage";
+import { SocialMediaPage } from "./pages/SocialMediaPage";
 
 export function App() {
   return (
@@ -29,6 +30,7 @@ export function App() {
         <Route path="marketingtipps" element={<MarketingtippsPage />} />
         <Route path="webinare" element={<WebinarePage />} />
         <Route path="veranstaltungen" element={<VeranstaltungenPage />} />
+        <Route path="social-media" element={<SocialMediaPage />} />
       </Route>
     </Routes>
   );

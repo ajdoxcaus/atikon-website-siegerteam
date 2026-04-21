@@ -4,7 +4,7 @@ import { SectionHeading } from "../ui/SectionHeading";
 
 const EVENTS = [
   {
-    title: "TAXarena \u2013 Die Innovationsmesse f\u00fcr Steuerkanzleien",
+    title: "TAXarena – Die Innovationsmesse für Steuerkanzleien",
     date: "23. April 2026",
     location: "Jahrhunderthalle Bochum",
     address: "An der Jahrhunderthalle 1, 44793 Bochum",
@@ -12,21 +12,21 @@ const EVENTS = [
   },
   {
     title: "64. Deutscher Steuerberaterkongress 2026",
-    date: "04.\u201305. Mai 2026",
+    date: "04.–05. Mai 2026",
     location: "Estrel Berlin Congress Center",
     address: "Sonnenallee 225, 12057 Berlin",
     accent: "bg-atikon-orange",
   },
   {
-    title: "\u00d6GSW Finanzstrafrechtstagung",
+    title: "ÖGSW Finanzstrafrechtstagung",
     date: "22. Mai 2026",
     location: "Steigenberger Hotel Herrenhof",
     address: "Herrengasse 10, 1010 Wien",
     accent: "bg-atikon-violet",
   },
   {
-    title: "Arbeitstagung der Akademie der Wirtschaftspr\u00fcfer und Steuerberater",
-    date: "28. Mai \u2013 02. Juni 2026",
+    title: "Arbeitstagung der Akademie der Wirtschaftsprüfer und Steuerberater",
+    date: "28. Mai – 02. Juni 2026",
     location: "Congress Center Villach",
     address: "Europaplatz 1-2, 9500 Villach",
     accent: "bg-atikon-orange",

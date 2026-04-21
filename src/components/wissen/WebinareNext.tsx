@@ -3,10 +3,10 @@ import { SectionShell } from "../ui/SectionShell";
 import { Button } from "../ui/Button";
 
 const BULLET_POINTS = [
-  "Warum Personal Branding f\u00fcr Steuerberater im KI-Zeitalter wichtiger wird",
-  "Wie sich die Rolle von Fachwissen und pers\u00f6nlicher Positionierung ver\u00e4ndert",
+  "Warum Personal Branding für Steuerberater im KI-Zeitalter wichtiger wird",
+  "Wie sich die Rolle von Fachwissen und persönlicher Positionierung verändert",
   "Wie Sie auf LinkedIn bei Ihrer Zielgruppe sichtbar punkten",
-  "Wie Sie Ihren Expertenstatus gezielt nach au\u00dfen tragen und festigen",
+  "Wie Sie Ihren Expertenstatus gezielt nach außen tragen und festigen",
 ];
 
 export function WebinareNext() {
@@ -14,7 +14,7 @@ export function WebinareNext() {
     <SectionShell bg="neutral">
       <div className="mx-auto max-w-3xl">
         <span className="inline-block rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 mb-6">
-          N\u00e4chstes Webinar
+          Nächstes Webinar
         </span>
 
         <div className="rounded-2xl border border-neutral-200 bg-white p-8 lg:p-10 shadow-sm">
@@ -23,13 +23,13 @@ export function WebinareNext() {
           </h3>
 
           <p className="mt-2 text-sm font-semibold text-atikon-violet">
-            Christoph Amon \u2013 Gesch\u00e4ftsf\u00fchrung und Marketingexperte f\u00fcr Steuerberater
+            Christoph Amon – Geschäftsführung und Marketingexperte für Steuerberater
           </p>
 
           <p className="mt-4 text-sm leading-relaxed text-neutral-600">
-            K\u00fcnstliche Intelligenz ver\u00e4ndert den Markt f\u00fcr Steuerberater sp\u00fcrbar.
-            Fachwissen wird schneller verf\u00fcgbar, Inhalte werden austauschbarer.
-            Wer heute nicht nur fachlich \u00fcberzeugt, sondern auch als Pers\u00f6nlichkeit
+            Künstliche Intelligenz verändert den Markt für Steuerberater spürbar.
+            Fachwissen wird schneller verfügbar, Inhalte werden austauschbarer.
+            Wer heute nicht nur fachlich überzeugt, sondern auch als Persönlichkeit
             erkennbar ist, schafft Vertrauen und hebt sich vom Wettbewerb ab.
           </p>
 
@@ -44,7 +44,7 @@ export function WebinareNext() {
             </span>
             <span className="inline-flex items-center gap-1.5">
               <Users size={14} className="text-atikon-violet" />
-              Kostenlos | begrenzte Pl\u00e4tze
+              Kostenlos | begrenzte Plätze
             </span>
           </div>
 

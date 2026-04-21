@@ -23,7 +23,7 @@ const useCases: UseCase[] = [
     title: "Bilanzpräsentations-Assistent",
     description:
       "Bereitet Jahresabschluss-Gespräche vor: fasst Kennzahlen zusammen, erstellt Gesprächsleitfäden und schlägt Optimierungen vor.",
-    example: "Mandant M\u00FCller GmbH \u2013 Bilanz 2025: 3 Handlungsempfehlungen identifiziert",
+    example: "Mandant Müller GmbH – Bilanz 2025: 3 Handlungsempfehlungen identifiziert",
     status: "in Entwicklung",
   },
   {
@@ -31,7 +31,7 @@ const useCases: UseCase[] = [
     title: "Kanzlei-Wissensassistent",
     description:
       "Beantwortet fachliche Standardfragen basierend auf Ihren Kanzlei-Inhalten – als interne Unterstützung für Ihr Team.",
-    example: "\u201EWie ist die aktuelle Abschreibungsregel f\u00FCr E-Fahrzeuge?\u201C \u2013 Antwort in 3 Sek.",
+    example: "„Wie ist die aktuelle Abschreibungsregel für E-Fahrzeuge?" – Antwort in 3 Sek.",
     status: "in Entwicklung",
   },
   {
@@ -39,7 +39,7 @@ const useCases: UseCase[] = [
     title: "Meeting-Agent",
     description:
       "Bereitet Mandantengespräche vor – mit Agenda, offenen Punkten und steuerlichen Handlungsfeldern. Nach dem Termin fasst er Ergebnisse zusammen und leitet Aufgaben ab.",
-    example: "Meeting mit Steuerberatung Huber: Agenda erstellt, 4 To-dos nach Gespr\u00E4ch zugewiesen",
+    example: "Meeting mit Steuerberatung Huber: Agenda erstellt, 4 To-dos nach Gespräch zugewiesen",
     status: "in Entwicklung",
   },
   {
@@ -47,7 +47,7 @@ const useCases: UseCase[] = [
     title: "Mandantenkommunikations-Agent",
     description:
       "Entwirft individuelle Mandantenanschreiben, beantwortet Standardanfragen und erstellt Statusupdates – alles in Ihrer Kanzleitonalität und mit fachlicher Präzision.",
-    example: "Anschreiben an 12 Mandanten zur Grundsteuererkl\u00E4rung \u2013 personalisiert in 30 Sek.",
+    example: "Anschreiben an 12 Mandanten zur Grundsteuererklärung – personalisiert in 30 Sek.",
     status: "in Entwicklung",
   },
 ];
