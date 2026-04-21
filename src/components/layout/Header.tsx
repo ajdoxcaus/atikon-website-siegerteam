@@ -13,10 +13,16 @@ import {
   FileText,
   LayoutDashboard,
   BarChart3,
-  Trophy,
-  BookOpen,
+  Heart,
+  Users,
+  Newspaper,
+  CalendarCheck,
+  Lightbulb,
+  Video,
+  CalendarDays,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { useTerminFunnel } from "../../context/TerminFunnelContext";
 
 type NavChild = {
   to: string;
@@ -89,30 +95,58 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    label: "Lösungen",
+    label: "Unternehmen",
     children: [
       {
-        to: "/taxhub",
-        label: "taxHub",
-        description: "Zentrale Plattform für Kanzleimarketing.",
-        icon: LayoutDashboard,
+        to: "/warum-atikon",
+        label: "Warum Atikon",
+        description: "25 Jahre Marketingpartner für Steuerkanzleien.",
+        icon: Heart,
       },
       {
-        to: "/newsletter",
-        label: "Newsletter",
-        description: "Regelmäßige Mandantenkommunikation.",
-        icon: Mail,
+        to: "/team",
+        label: "Team",
+        description: "Rund 80 Spezialist:innen für Ihren Erfolg.",
+        icon: Users,
       },
       {
-        to: "/ai-studio",
-        label: "AI Studio",
-        description: "Innovative Videokommunikation mit KI.",
-        icon: Sparkles,
+        to: "/news",
+        label: "News",
+        description: "Neuigkeiten und Aktuelles von Atikon.",
+        icon: Newspaper,
+      },
+      {
+        to: "/terminbuchung",
+        label: "Terminbuchung",
+        description: "Persönliche Beratung online oder vor Ort.",
+        icon: CalendarCheck,
       },
     ],
   },
   { label: "Erfolge", hash: "erfolge" },
-  { label: "Wissen", hash: "wissen" },
+  {
+    label: "Wissen",
+    children: [
+      {
+        to: "/marketingtipps",
+        label: "Marketingtipps",
+        description: "Über 100 Praxistipps für Ihr Kanzleimarketing.",
+        icon: Lightbulb,
+      },
+      {
+        to: "/webinare",
+        label: "Webinare",
+        description: "Kostenlose Gipfelstürmer-Webinare für Steuerberater.",
+        icon: Video,
+      },
+      {
+        to: "/veranstaltungen",
+        label: "Veranstaltungen",
+        description: "Events, Messen und Kongresse für Steuerberater.",
+        icon: CalendarDays,
+      },
+    ],
+  },
 ];
 
 function scrollToHash(hash: string) {
@@ -126,6 +160,7 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { open: openTermin } = useTerminFunnel();
 
   const handleHashClick = useCallback(
     (e: React.MouseEvent, hash: string) => {
@@ -191,11 +226,18 @@ export function Header() {
             Login
           </a>
           <Link
-            to="#termin"
+            to="/karriere"
+            className="btn-violet hover:btn-violet-hover focus-visible:btn-violet-focus text-sm"
+          >
+            Karriere
+          </Link>
+          <button
+            type="button"
+            onClick={openTermin}
             className="btn-primary hover:btn-primary-hover focus-visible:btn-primary-focus text-sm"
           >
             Termin buchen
-          </Link>
+          </button>
         </div>
 
         {/* Mobile toggle */}
@@ -248,14 +290,24 @@ export function Header() {
               <LogIn size={16} />
               Login
             </a>
-            <div className="px-3 pt-2">
+            <div className="px-3 pt-2 flex flex-col gap-2">
               <Link
-                to="#termin"
+                to="/karriere"
                 onClick={() => setMobileOpen(false)}
+                className="inline-flex items-center justify-center rounded-full bg-atikon-violet px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-atikon-violet-dark w-full text-center"
+              >
+                Karriere
+              </Link>
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileOpen(false);
+                  openTermin();
+                }}
                 className="btn-primary hover:btn-primary-hover w-full text-center text-sm"
               >
                 Termin buchen
-              </Link>
+              </button>
             </div>
           </nav>
         </div>
@@ -276,7 +328,7 @@ function DesktopDropdown({
   onLinkClick: (e: React.MouseEvent, to: string) => void;
 }) {
   const [open, setOpen] = useState(false);
-  const timeout = useRef<ReturnType<typeof setTimeout>>();
+  const timeout = useRef<ReturnType<typeof setTimeout>>(undefined);
   const ref = useRef<HTMLDivElement>(null);
 
   const enter = () => {
@@ -453,29 +505,10 @@ function MobileAccordion({
 
 function Atikon() {
   return (
-    <svg viewBox="0 0 120 28" className="h-7 w-auto" aria-hidden="true">
-      <text
-        x="0"
-        y="22"
-        fontFamily="'Fira Sans', sans-serif"
-        fontWeight="800"
-        fontSize="24"
-        fill="#FA4616"
-        letterSpacing="-0.5"
-      >
-        atikon
-      </text>
-      <text
-        x="0"
-        y="27"
-        fontFamily="'Fira Sans', sans-serif"
-        fontWeight="400"
-        fontSize="5.5"
-        fill="#000000"
-        letterSpacing="0.3"
-      >
-        Kanzleimarketing
-      </text>
-    </svg>
+    <img
+      src="/images/atikon-logo.png"
+      alt="Atikon – Alles Marketing"
+      className="h-10 w-auto lg:h-12"
+    />
   );
 }

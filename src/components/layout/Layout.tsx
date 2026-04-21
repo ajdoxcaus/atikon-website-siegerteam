@@ -4,6 +4,8 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { IntentSwitcher } from "./IntentSwitcher";
 import { StickyCTA } from "./StickyCTA";
+import { TerminFunnelProvider, useTerminFunnel } from "../../context/TerminFunnelContext";
+import { TerminFunnelModal } from "../termin/TerminFunnelModal";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -15,10 +17,33 @@ function ScrollToTop() {
   return null;
 }
 
+function TerminLinkInterceptor() {
+  const { open } = useTerminFunnel();
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      const anchor = (e.target as HTMLElement).closest("a");
+      if (!anchor) return;
+      const href = anchor.getAttribute("href") ?? "";
+      const to = anchor.getAttribute("data-to") ?? "";
+      if (href === "#termin" || to === "#termin" || href.endsWith("/#termin")) {
+        e.preventDefault();
+        e.stopPropagation();
+        open();
+      }
+    }
+    document.addEventListener("click", handleClick, true);
+    return () => document.removeEventListener("click", handleClick, true);
+  }, [open]);
+
+  return null;
+}
+
 export function Layout() {
   return (
-    <>
+    <TerminFunnelProvider>
       <ScrollToTop />
+      <TerminLinkInterceptor />
 
       {/* Skip link */}
       <a
@@ -42,6 +67,7 @@ export function Layout() {
 
       <IntentSwitcher />
       <StickyCTA />
-    </>
+      <TerminFunnelModal />
+    </TerminFunnelProvider>
   );
 }

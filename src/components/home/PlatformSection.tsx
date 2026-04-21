@@ -104,55 +104,295 @@ export function PlatformSection() {
 }
 
 function PlatformMockup() {
+  const cx = 480;
+  const cy = 220;
+  const coreR = 68;
+
+  const nodes = [
+    { ...platformModules[0], x: 130, y: 100, r: 50, delay: 0 },
+    { ...platformModules[1], x: 830, y: 100, r: 50, delay: 0.3 },
+    { ...platformModules[2], x: 180, y: 340, r: 55, delay: 0.6 },
+    { ...platformModules[3], x: 780, y: 340, r: 50, delay: 0.9 },
+    { ...platformModules[4], x: 60, y: 220, r: 47, delay: 1.2 },
+    { ...platformModules[5], x: 900, y: 220, r: 47, delay: 1.5 },
+  ];
+
   return (
-    <div className="rounded-2xl border border-neutral-200/80 bg-white shadow-lg overflow-hidden">
-      {/* Browser chrome */}
-      <div className="flex items-center gap-2 px-5 py-3 border-b border-neutral-100 bg-neutral-50/60">
-        <div className="h-2.5 w-2.5 rounded-full bg-neutral-300" />
-        <div className="h-2.5 w-2.5 rounded-full bg-neutral-300" />
-        <div className="h-2.5 w-2.5 rounded-full bg-neutral-300" />
-        <div className="ml-3 flex-1 h-6 rounded-full bg-white border border-neutral-100 flex items-center px-3">
-          <span className="text-[10px] text-neutral-300 select-none">taxhub.atikon.com</span>
-        </div>
-      </div>
+    <div className="relative mx-auto max-w-4xl">
+      <svg
+        viewBox="-10 0 980 440"
+        className="w-full h-auto"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <radialGradient id="bg-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#410098" stopOpacity="0.07" />
+            <stop offset="100%" stopColor="#410098" stopOpacity="0" />
+          </radialGradient>
 
-      <div className="flex">
-        {/* Sidebar */}
-        <div className="hidden sm:flex w-14 shrink-0 flex-col items-center gap-4 border-r border-neutral-100 bg-neutral-50/40 py-5">
-          {platformModules.map((m) => {
-            const Icon = m.icon;
-            return (
-              <div
-                key={m.label}
-                className="flex h-8 w-8 items-center justify-center rounded-lg text-atikon-violet/60 hover:bg-atikon-violet/6 transition-colors"
-                title={m.label}
+          <radialGradient id="core-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#FA4616" stopOpacity="0.25" />
+            <stop offset="60%" stopColor="#410098" stopOpacity="0.12" />
+            <stop offset="100%" stopColor="#410098" stopOpacity="0" />
+          </radialGradient>
+
+          <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#410098" stopOpacity="0.5" />
+            <stop offset="50%" stopColor="#FA4616" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="#410098" stopOpacity="0.5" />
+          </linearGradient>
+
+          <filter id="node-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="8" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+
+          <filter id="core-filter" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="16" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        <ellipse cx={cx} cy={cy} rx="420" ry="200" fill="url(#bg-glow)" />
+
+        {nodes.map((node) => {
+          const dx = node.x - cx;
+          const dy = node.y - cy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const dashLen = dist;
+          return (
+            <g key={node.label}>
+              <line
+                x1={cx}
+                y1={cy}
+                x2={node.x}
+                y2={node.y}
+                stroke="url(#line-grad)"
+                strokeWidth="1.5"
+                strokeDasharray={`${dashLen}`}
+                strokeDashoffset={dashLen}
+                opacity="0.6"
               >
-                <Icon size={16} />
-              </div>
-            );
-          })}
-        </div>
+                <animate
+                  attributeName="stroke-dashoffset"
+                  from={dashLen}
+                  to="0"
+                  dur="1.2s"
+                  begin={`${node.delay}s`}
+                  fill="freeze"
+                />
+              </line>
 
-        {/* Module tiles */}
-        <div className="flex-1 p-5 sm:p-6">
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            {platformModules.map((m) => {
-              const Icon = m.icon;
-              return (
-                <div
-                  key={m.label}
-                  className="flex items-center gap-3 rounded-xl border border-neutral-100 bg-neutral-50/50 p-4 transition-shadow hover:shadow-sm"
-                >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-atikon-violet/8">
-                    <Icon size={16} className="text-atikon-violet" />
-                  </div>
-                  <span className="text-sm font-semibold text-neutral-700">{m.label}</span>
+              <circle cx={node.x} cy={node.y} r={dist * 0.06} fill="#410098" opacity="0">
+                <animate
+                  attributeName="opacity"
+                  values="0;0.12;0"
+                  dur="3s"
+                  begin={`${node.delay + 1}s`}
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="r"
+                  values={`${dist * 0.04};${dist * 0.08};${dist * 0.04}`}
+                  dur="3s"
+                  begin={`${node.delay + 1}s`}
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </g>
+          );
+        })}
+
+        {nodes.map((node, i) => {
+          const next = nodes[(i + 1) % nodes.length];
+          return (
+            <line
+              key={`cross-${node.label}`}
+              x1={node.x}
+              y1={node.y}
+              x2={next.x}
+              y2={next.y}
+              stroke="#410098"
+              strokeWidth="0.8"
+              strokeDasharray="4 6"
+              opacity="0"
+            >
+              <animate
+                attributeName="opacity"
+                values="0;0.2;0"
+                dur="4s"
+                begin={`${1.5 + i * 0.4}s`}
+                repeatCount="indefinite"
+              />
+            </line>
+          );
+        })}
+
+        <circle cx={cx} cy={cy} r={coreR + 30} fill="url(#core-glow)" filter="url(#core-filter)">
+          <animate
+            attributeName="r"
+            values={`${coreR + 20};${coreR + 35};${coreR + 20}`}
+            dur="4s"
+            repeatCount="indefinite"
+          />
+        </circle>
+
+        <circle cx={cx} cy={cy} r={coreR} fill="#410098" opacity="0.95">
+          <animate
+            attributeName="r"
+            values={`${coreR};${coreR + 3};${coreR}`}
+            dur="3s"
+            repeatCount="indefinite"
+          />
+        </circle>
+
+        <text
+          x={cx}
+          y={cy - 8}
+          textAnchor="middle"
+          fontFamily="'Fira Sans', sans-serif"
+          fontWeight="800"
+          fontSize="21"
+          fill="white"
+          letterSpacing="1"
+        >
+          taxHub
+        </text>
+        <text
+          x={cx}
+          y={cy + 14}
+          textAnchor="middle"
+          fontFamily="'Fira Sans', sans-serif"
+          fontWeight="400"
+          fontSize="12"
+          fill="white"
+          opacity="0.8"
+        >
+          Marketing & KI
+        </text>
+
+        {[0, 1, 2].map((ring) => (
+          <circle
+            key={`ring-${ring}`}
+            cx={cx}
+            cy={cy}
+            r={coreR + 10}
+            fill="none"
+            stroke="#FA4616"
+            strokeWidth="1"
+            opacity="0"
+          >
+            <animate
+              attributeName="r"
+              from={coreR + 10}
+              to={coreR + 80}
+              dur="3s"
+              begin={`${ring * 1}s`}
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="opacity"
+              values="0.4;0"
+              dur="3s"
+              begin={`${ring * 1}s`}
+              repeatCount="indefinite"
+            />
+          </circle>
+        ))}
+
+        {nodes.map((node) => {
+          const Icon = node.icon;
+          return (
+            <g key={`node-${node.label}`} filter="url(#node-glow)" opacity="0">
+              <animate
+                attributeName="opacity"
+                from="0"
+                to="1"
+                dur="0.5s"
+                begin={`${node.delay + 0.8}s`}
+                fill="freeze"
+              />
+
+              <circle cx={node.x} cy={node.y} r={node.r} fill="white" stroke="#410098" strokeWidth="1.5" opacity="0.95" />
+
+              <circle cx={node.x} cy={node.y} r={node.r - 2} fill="none" stroke="#410098" strokeWidth="0.5" strokeDasharray="2 3" opacity="0.3">
+                <animateTransform
+                  attributeName="transform"
+                  type="rotate"
+                  from={`0 ${node.x} ${node.y}`}
+                  to={`360 ${node.x} ${node.y}`}
+                  dur="20s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+
+              <foreignObject
+                x={node.x - 14}
+                y={node.y - 22}
+                width="28"
+                height="28"
+              >
+                <div className="flex items-center justify-center w-full h-full text-atikon-violet">
+                  <Icon size={24} />
                 </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
+              </foreignObject>
+
+              <text
+                x={node.x}
+                y={node.y + 16}
+                textAnchor="middle"
+                fontFamily="'Fira Sans', sans-serif"
+                fontWeight="600"
+                fontSize="11"
+                fill="#410098"
+              >
+                {node.label}
+              </text>
+            </g>
+          );
+        })}
+
+        {nodes.map((node, i) => {
+          const angle = Math.atan2(node.y - cy, node.x - cx);
+          const particleCount = 3;
+          return Array.from({ length: particleCount }, (_, j) => {
+            const offset = j * (1 / particleCount);
+            const pathLength = Math.sqrt((node.x - cx) ** 2 + (node.y - cy) ** 2);
+            return (
+              <circle key={`particle-${i}-${j}`} r="2" fill="#FA4616" opacity="0">
+                <animate
+                  attributeName="cx"
+                  values={`${cx};${node.x};${cx}`}
+                  dur="4s"
+                  begin={`${node.delay + 1.5 + offset * 4}s`}
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="cy"
+                  values={`${cy};${node.y};${cy}`}
+                  dur="4s"
+                  begin={`${node.delay + 1.5 + offset * 4}s`}
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="opacity"
+                  values="0;0.8;0.8;0"
+                  dur="4s"
+                  begin={`${node.delay + 1.5 + offset * 4}s`}
+                  repeatCount="indefinite"
+                />
+              </circle>
+            );
+          });
+        })}
+      </svg>
     </div>
   );
 }

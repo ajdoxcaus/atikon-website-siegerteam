@@ -15,10 +15,15 @@ const FOOTER_LINKS = {
     { label: "Social Media", to: "/social-media" },
   ],
   Unternehmen: [
-    { label: "Über Atikon", to: "/ueber-uns" },
-    { label: "Erfolge", to: "/#erfolge" },
-    { label: "Wissensportal", to: "/#wissen" },
-    { label: "Karriere", to: "/karriere" },
+    { label: "Warum Atikon", to: "/warum-atikon" },
+    { label: "Team", to: "/team" },
+    { label: "News", to: "/news" },
+    { label: "Terminbuchung", to: "/terminbuchung" },
+  ],
+  Wissen: [
+    { label: "Marketingtipps", to: "/marketingtipps" },
+    { label: "Webinare", to: "/webinare" },
+    { label: "Veranstaltungen", to: "/veranstaltungen" },
   ],
 } as const;
 
@@ -27,7 +32,7 @@ export function Footer() {
     <footer className="bg-atikon-violet text-white" role="contentinfo">
       <div className="container-max py-16 lg:py-20">
         {/* Top: Grid */}
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
           {/* Brand column */}
           <div className="space-y-4">
             <p className="text-lg font-extrabold tracking-tight text-atikon-orange">atikon</p>

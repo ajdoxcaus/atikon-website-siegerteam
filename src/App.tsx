@@ -4,6 +4,14 @@ import { HomePage } from "./pages/HomePage";
 import { NewsletterPage } from "./pages/NewsletterPage";
 import { TaxHubPage } from "./pages/TaxHubPage";
 import { AIStudioPage } from "./pages/AIStudioPage";
+import { WarumAtikonPage } from "./pages/WarumAtikonPage";
+import { TeamPage } from "./pages/TeamPage";
+import { NewsPage } from "./pages/NewsPage";
+import { TerminbuchungPage } from "./pages/TerminbuchungPage";
+import { KarrierePage } from "./pages/KarrierePage";
+import { MarketingtippsPage } from "./pages/MarketingtippsPage";
+import { WebinarePage } from "./pages/WebinarePage";
+import { VeranstaltungenPage } from "./pages/VeranstaltungenPage";
 
 export function App() {
   return (
@@ -13,6 +21,14 @@ export function App() {
         <Route path="newsletter" element={<NewsletterPage />} />
         <Route path="taxhub" element={<TaxHubPage />} />
         <Route path="ai-studio" element={<AIStudioPage />} />
+        <Route path="warum-atikon" element={<WarumAtikonPage />} />
+        <Route path="team" element={<TeamPage />} />
+        <Route path="news" element={<NewsPage />} />
+        <Route path="terminbuchung" element={<TerminbuchungPage />} />
+        <Route path="karriere" element={<KarrierePage />} />
+        <Route path="marketingtipps" element={<MarketingtippsPage />} />
+        <Route path="webinare" element={<WebinarePage />} />
+        <Route path="veranstaltungen" element={<VeranstaltungenPage />} />
       </Route>
     </Routes>
   );

@@ -229,6 +229,37 @@
   outline-offset: 2px;
 }
 
+/* ── Violet button (same size as primary, violet colour) ── */
+@utility btn-violet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8125rem 2rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  font-weight: 600;
+  line-height: 1;
+  color: #ffffff;
+  background-color: var(--color-atikon-violet);
+  border: 2px solid var(--color-atikon-violet);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+@utility btn-violet-hover {
+  background-color: var(--color-atikon-violet-dark);
+  border-color: var(--color-atikon-violet-dark);
+  box-shadow: 0 4px 16px rgba(65, 0, 152, 0.3);
+}
+
+@utility btn-violet-focus {
+  outline: 3px solid rgba(65, 0, 152, 0.4);
+  outline-offset: 2px;
+}
+
 /* ── Secondary button (violet outline) ── */
 @utility btn-secondary {
   display: inline-flex;
@@ -404,6 +435,41 @@
   animation: hero-glow 1.2s ease 1.35s both;
 }
 
+/* ── Background puzzle animations ── */
+
+@keyframes puzzle-bg-draw {
+  from { stroke-dashoffset: 1; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes puzzle-bg-pulse {
+  0%, 100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
+
+@keyframes puzzle-bg-glow-move {
+  0%   { background-position: -50% -50%; }
+  50%  { background-position: 150% 150%; }
+  100% { background-position: -50% -50%; }
+}
+
+.puzzle-bg-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation:
+    puzzle-bg-draw 2s cubic-bezier(0.22, 1, 0.36, 1) both,
+    puzzle-bg-pulse 4s ease-in-out 2.5s infinite;
+}
+
+.puzzle-bg-line-0 { animation-delay: 0s, 2.5s; }
+.puzzle-bg-line-1 { animation-delay: 0.4s, 2.9s; }
+.puzzle-bg-line-2 { animation-delay: 0.8s, 3.3s; }
+.puzzle-bg-line-3 { animation-delay: 1.2s, 3.7s; }
+
+.puzzle-bg-glow-overlay {
+  animation: puzzle-bg-glow-move 8s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-hero-stagger,
   .puzzle-piece {
@@ -413,6 +479,14 @@
     filter: none !important;
   }
   .puzzle-glow {
+    animation: none !important;
+  }
+  .puzzle-bg-line {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+    opacity: 0.09 !important;
+  }
+  .puzzle-bg-glow-overlay {
     animation: none !important;
   }
 }

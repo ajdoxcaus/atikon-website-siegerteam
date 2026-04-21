@@ -1,5 +1,6 @@
 import type { ComponentProps } from "react";
 import { Link } from "react-router-dom";
+import { useTerminFunnel } from "../../context/TerminFunnelContext";
 
 type Variant = "primary" | "secondary";
 
@@ -35,6 +36,15 @@ export function Button({
   ...rest
 }: ButtonProps) {
   const cls = `${base} ${variants[variant]} ${sizes[size]}`;
+  const { open: openTermin } = useTerminFunnel();
+
+  if (to === "#termin") {
+    return (
+      <button type="button" className={cls} onClick={openTermin}>
+        {children}
+      </button>
+    );
+  }
 
   if (to) {
     return (
