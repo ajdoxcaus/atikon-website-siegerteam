@@ -21,7 +21,7 @@ const ANIMATION_SLOTS = [
 type EdgeKind = "tab" | "socket" | "flat";
 type PieceEdges = { top: EdgeKind; right: EdgeKind; bottom: EdgeKind; left: EdgeKind };
 
-const PIECE_SIZE = 200;
+const PIECE_SIZE = 200; //test
 const JOINT_START = 76;
 const JOINT_END = 124;
 const JOINT_MID = 100;
