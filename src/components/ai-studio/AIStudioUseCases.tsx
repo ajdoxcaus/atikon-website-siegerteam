@@ -31,7 +31,7 @@ const useCases: UseCase[] = [
     title: "Kanzlei-Wissensassistent",
     description:
       "Beantwortet fachliche Standardfragen basierend auf Ihren Kanzlei-Inhalten – als interne Unterstützung für Ihr Team.",
-    example: "„Wie ist die aktuelle Abschreibungsregel für E-Fahrzeuge?" – Antwort in 3 Sek.",
+    example: "„Wie ist die aktuelle Abschreibungsregel für E-Fahrzeuge?“ – Antwort in 3 Sek.",
     status: "in Entwicklung",
   },
   {

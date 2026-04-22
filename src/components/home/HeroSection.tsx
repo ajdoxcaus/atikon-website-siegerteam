@@ -19,13 +19,12 @@ import {
   Megaphone,
   Search,
   TrendingUp,
-  type LucideIcon,
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import { useIntent, type Intent } from "../../hooks/useIntent";
 import { intentVariants } from "../../data/content";
 import { Button } from "../ui/Button";
 import { Badge } from "../ui/Badge";
+import { DynamicPuzzleGrid, type DynamicPuzzleItem } from "./DynamicPuzzleGrid";
 
 export function HeroSection() {
   const intent = useIntent();
@@ -110,30 +109,16 @@ export function HeroSection() {
 
 /* ── Puzzle piece data (intent-aware) ── */
 
-type Piece = {
-  label: string;
-  icon: LucideIcon;
-  desc: string;
-  to: string;
-};
-
-const ANIMATION_SLOTS = [
-  { delay: "100ms",  from: "translate(-60px, -40px)" },
-  { delay: "300ms",  from: "translate(0, -70px)" },
-  { delay: "500ms",  from: "translate(60px, -40px)" },
-  { delay: "700ms",  from: "translate(-60px, 40px)" },
-  { delay: "850ms",  from: "translate(0, 70px)" },
-  { delay: "1000ms", from: "translate(60px, 40px)" },
-] as const;
+type Piece = DynamicPuzzleItem;
 
 const PUZZLE_SETS: Record<Intent, Piece[]> = {
   default: [
-    { label: "Website",             icon: Globe,    desc: "Professioneller Kanzlei-Auftritt",  to: "/#module" },
+    { label: "Website",             icon: Globe,    desc: "Professioneller Kanzlei-Auftritt",  to: "/#module", example: "Startseite, Team, Leistungen" },
     { label: "Content & Marketing", icon: FileText, desc: "Steuernews & Textservice",          to: "/#module" },
-    { label: "AI Studio",           icon: Sparkles, desc: "KI-Workspace für Kanzleien",        to: "/ai-studio" },
+    { label: "AI Studio",           icon: Sparkles, desc: "KI-Workspace für Kanzleien",        to: "/ai-studio", example: "Fach-Chat, Meeting-Agent" },
     { label: "Lead Management",     icon: Target,   desc: "Mandantengewinnung digital",        to: "/#module" },
-    { label: "Newsletter",          icon: Mail,     desc: "Personalisierte Mandantenbindung",  to: "/newsletter" },
-    { label: "Social Media",        icon: Share2,   desc: "Social aus einer Hand",             to: "/#module" },
+    { label: "Newsletter",          icon: Mail,     desc: "Personalisierte Mandantenbindung",  to: "/newsletter", example: "Steuernews automatisch" },
+    { label: "Social Media",        icon: Share2,   desc: "Social aus einer Hand",             to: "/#module", example: "Redaktionsplan & Posts" },
   ],
   newsletter: [
     { label: "Kanzlei-Design",      icon: Palette,           desc: "Ihr CI, Ihre Farben, Ihr Logo",      to: "/newsletter" },
@@ -169,213 +154,10 @@ const PUZZLE_SETS: Record<Intent, Piece[]> = {
   ],
 };
 
-/*
- * SVG clip-path outlines for each of the 6 puzzle pieces in a 3×2 grid.
- *
- * The puzzle uses a 600×400 viewBox (3 cols × 200px, 2 rows × 200px).
- * Each piece occupies a 200×200 cell. Shared edges have a circular
- * bump (tab) on one side and a matching indent (socket) on the other.
- * Bumps extend ~24px beyond the cell boundary; sockets indent ~24px.
- *
- * Convention:
- *   tab-right  on [r,c]  ↔  socket-left on [r, c+1]
- *   tab-bottom on [r,c]  ↔  socket-top  on [r+1, c]
- */
-const PIECE_PATHS = [
-  // [0,0] Website — right tab, bottom tab
-  "M0,0 L200,0 L200,76 C200,76 224,80 224,100 C224,120 200,124 200,124 L200,200 L124,200 C124,200 120,224 100,224 C80,224 76,200 76,200 L0,200 Z",
-  // [0,1] Content — left socket, right tab, bottom socket
-  "M200,0 L400,0 L400,76 C400,76 424,80 424,100 C424,120 400,124 400,124 L400,200 L324,200 C324,200 320,176 300,176 C280,176 276,200 276,200 L200,200 L200,124 C200,124 224,120 224,100 C224,80 200,76 200,76 Z",
-  // [0,2] AI Studio — left socket, bottom tab
-  "M400,0 L600,0 L600,200 L524,200 C524,200 520,224 500,224 C480,224 476,200 476,200 L400,200 L400,124 C400,124 424,120 424,100 C424,80 400,76 400,76 Z",
-  // [1,0] Lead Management — right socket, top socket
-  "M0,200 L76,200 C76,200 80,224 100,224 C120,224 124,200 124,200 L200,200 L200,276 C200,276 176,280 176,300 C176,320 200,324 200,324 L200,400 L0,400 Z",
-  // [1,1] Newsletter — left tab, top tab, right socket
-  "M200,200 L276,200 C276,200 280,176 300,176 C320,176 324,200 324,200 L400,200 L400,276 C400,276 376,280 376,300 C376,320 400,324 400,324 L400,400 L200,400 L200,324 C200,324 176,320 176,300 C176,280 200,276 200,276 Z",
-  // [1,2] Social Media — left tab, top socket
-  "M400,200 L476,200 C476,200 480,224 500,224 C520,224 524,200 524,200 L600,200 L600,400 L400,400 L400,324 C400,324 376,320 376,300 C376,280 400,276 400,276 Z",
-];
-
-/* Centre of each piece's bounding cell (for positioning content) */
-const PIECE_CENTERS: [number, number][] = [
-  [100, 100],  // [0,0]
-  [300, 100],  // [0,1]
-  [500, 100],  // [0,2]
-  [100, 300],  // [1,0]
-  [300, 300],  // [1,1]
-  [500, 300],  // [1,2]
-];
-
-const GRADIENTS: [string, string][] = [
-  ["#410098", "#5B18B5"],
-  ["#5B18B5", "#410098"],
-  ["#FA4616", "#FD7A55"],
-  ["#2E006B", "#410098"],
-  ["#410098", "#2E006B"],
-  ["#D93A10", "#FA4616"],
-];
-
 function PuzzleHero({ intent }: { intent: Intent }) {
   const pieces = PUZZLE_SETS[intent];
 
-  return (
-    <div
-      className="puzzle-glow relative rounded-2xl overflow-hidden"
-      aria-label="taxHub Plattform – 6 Module setzen sich als Puzzle zusammen"
-    >
-      <svg
-        viewBox="0 0 600 400"
-        className="w-full h-auto"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          {pieces.map((_, i) => (
-            <clipPath key={`clip-${i}`} id={`puzzle-clip-${i}`}>
-              <path d={PIECE_PATHS[i]} />
-            </clipPath>
-          ))}
-
-          {GRADIENTS.map(([from, to], i) => (
-            <linearGradient
-              key={`grad-${i}`}
-              id={`puzzle-grad-${i}`}
-              x1="0" y1="0" x2="1" y2="1"
-            >
-              <stop offset="0%" stopColor={from} />
-              <stop offset="100%" stopColor={to} />
-            </linearGradient>
-          ))}
-        </defs>
-
-        <PuzzleGridLines />
-
-        {pieces.map((piece, i) => (
-          <PuzzlePieceSVG key={piece.label} piece={piece} index={i} />
-        ))}
-      </svg>
-
-      {/* React Router link overlays */}
-      <div className="absolute inset-0 grid grid-cols-3 grid-rows-2">
-        {pieces.map((piece) => (
-          <Link
-            key={piece.label}
-            to={piece.to}
-            className="block hover:bg-white/10 transition-colors duration-200"
-            aria-label={`${piece.label} – ${piece.desc}`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function PuzzlePieceSVG({ piece, index }: { piece: Piece; index: number }) {
-  const Icon = piece.icon;
-  const [cx, cy] = PIECE_CENTERS[index];
-  const slot = ANIMATION_SLOTS[index];
-
-  return (
-    <g
-      className="puzzle-piece"
-      style={{
-        animationDelay: slot.delay,
-        "--puzzle-from": slot.from,
-        transformOrigin: `${cx}px ${cy}px`,
-      } as React.CSSProperties}
-      clipPath={`url(#puzzle-clip-${index})`}
-    >
-      {/* Background fill */}
-      <rect
-        x={cx - 100} y={cy - 100}
-        width={200} height={200}
-        fill={`url(#puzzle-grad-${index})`}
-        rx={0}
-      />
-
-      {/* Extend fill into tab areas */}
-      <path d={PIECE_PATHS[index]} fill={`url(#puzzle-grad-${index})`} />
-
-      {/* Icon circle */}
-      <circle cx={cx} cy={cy - 20} r={22} fill="rgba(255,255,255,0.15)" />
-      <foreignObject x={cx - 14} y={cy - 34} width={28} height={28}>
-        <div className="flex items-center justify-center h-full">
-          <Icon size={20} strokeWidth={1.8} color="white" />
-        </div>
-      </foreignObject>
-
-      {/* Label */}
-      <text
-        x={cx} y={cy + 16}
-        textAnchor="middle"
-        fill="white"
-        fontSize={13}
-        fontWeight={700}
-        fontFamily="var(--font-sans)"
-      >
-        {piece.label}
-      </text>
-
-      {/* Description */}
-      <text
-        x={cx} y={cy + 34}
-        textAnchor="middle"
-        fill="rgba(255,255,255,0.7)"
-        fontSize={9}
-        fontFamily="var(--font-sans)"
-      >
-        {piece.desc}
-      </text>
-
-    </g>
-  );
-}
-
-/* Puzzle grid lines matching piece boundaries */
-function PuzzleGridLines() {
-  const c = "rgba(65,0,152,0.12)";
-  const w = 2.5;
-
-  return (
-    <g className="animate-hero-stagger" style={{ animationDelay: "1200ms" } as React.CSSProperties}>
-      {/* Horizontal divider y=200 */}
-      <path
-        d={[
-          "M0,200",
-          "L76,200 C76,200 80,224 100,224 C120,224 124,200 124,200",
-          "L200,200",
-          "L276,200 C276,200 280,176 300,176 C320,176 324,200 324,200",
-          "L400,200",
-          "L476,200 C476,200 480,224 500,224 C520,224 524,200 524,200",
-          "L600,200",
-        ].join(" ")}
-        fill="none" stroke={c} strokeWidth={w}
-      />
-      {/* Vertical divider x=200 */}
-      <path
-        d={[
-          "M200,0",
-          "L200,76 C200,76 224,80 224,100 C224,120 200,124 200,124",
-          "L200,200",
-          "L200,276 C200,276 176,280 176,300 C176,320 200,324 200,324",
-          "L200,400",
-        ].join(" ")}
-        fill="none" stroke={c} strokeWidth={w}
-      />
-      {/* Vertical divider x=400 */}
-      <path
-        d={[
-          "M400,0",
-          "L400,76 C400,76 424,80 424,100 C424,120 400,124 400,124",
-          "L400,200",
-          "L400,276 C400,276 376,280 376,300 C376,320 400,324 400,324",
-          "L400,400",
-        ].join(" ")}
-        fill="none" stroke={c} strokeWidth={w}
-      />
-      {/* Outer border */}
-      <rect x={0} y={0} width={600} height={400} fill="none" stroke={c} strokeWidth={w} rx={12} />
-    </g>
-  );
+  return <DynamicPuzzleGrid items={pieces} />;
 }
 
 /* ── Background puzzle grid ── */
