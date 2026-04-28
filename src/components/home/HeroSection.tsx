@@ -35,11 +35,17 @@ export function HeroSection() {
   return (
     <section id="hero" className="relative overflow-hidden bg-white">
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <PuzzlePattern />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 55% 45% at 75% 35%, rgba(65,0,152,0.06), transparent 70%)",
+          }}
+        />
       </div>
 
       <div className="container-max relative py-16 sm:py-20 lg:py-28 xl:py-32">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
+        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:gap-10 xl:gap-14">
           {/* Copy */}
           <div className="max-w-xl">
             <div className="animate-hero-stagger" style={{ animationDelay: "0ms" }}>
@@ -98,7 +104,7 @@ export function HeroSection() {
           </div>
 
           {/* Puzzle visual */}
-          <div className="relative">
+          <div className="relative w-full">
             <PuzzleHero intent={intent} />
           </div>
         </div>
@@ -113,7 +119,7 @@ type Piece = DynamicPuzzleItem;
 
 const PUZZLE_SETS: Record<Intent, Piece[]> = {
   default: [
-    { label: "Website",             icon: Globe,    desc: "Professioneller Kanzlei-Auftritt",  to: "/#module", example: "Startseite, Team, Leistungen" },
+    { label: "Website",             icon: Globe,    desc: "Professioneller Kanzlei-Auftritt",  to: "/#module", example: "Startseite, Team, Leistungen", contentOffsetX: 6 },
     { label: "Content & Marketing", icon: FileText, desc: "Steuernews & Textservice",          to: "/#module" },
     { label: "AI Studio",           icon: Sparkles, desc: "KI-Workspace für Kanzleien",        to: "/ai-studio", example: "Fach-Chat, Meeting-Agent" },
     { label: "Lead Management",     icon: Target,   desc: "Mandantengewinnung digital",        to: "/#module" },
@@ -158,63 +164,4 @@ function PuzzleHero({ intent }: { intent: Intent }) {
   const pieces = PUZZLE_SETS[intent];
 
   return <DynamicPuzzleGrid items={pieces} />;
-}
-
-/* ── Background puzzle grid ── */
-
-function PuzzlePattern() {
-  const stroke = "rgba(65,0,152,0.09)";
-  const w = 3;
-
-  const paths = [
-    "M0,0 L73,0 C73,0 73,13 84,24 C92,32 108,32 116,24 C127,13 127,0 127,0 L273,0 C273,0 273,-13 284,-24 C292,-32 308,-32 316,-24 C327,-13 327,0 327,0 L400,0",
-    "M0,200 L73,200 C73,200 73,187 84,176 C92,168 108,168 116,176 C127,187 127,200 127,200 L273,200 C273,200 273,213 284,224 C292,232 308,232 316,224 C327,213 327,200 327,200 L400,200",
-    "M0,0 L0,73 C0,73 13,73 24,84 C32,92 32,108 24,116 C13,127 0,127 0,127 L0,273 C0,273 -13,273 -24,284 C-32,292 -32,308 -24,316 C-13,327 0,327 0,327 L0,400",
-    "M200,0 L200,73 C200,73 187,73 176,84 C168,92 168,108 176,116 C187,127 200,127 200,127 L200,273 C200,273 213,273 224,284 C232,292 232,308 224,316 C213,327 200,327 200,327 L200,400",
-  ];
-
-  return (
-    <>
-      <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern
-            id="puzzle-bg"
-            width={400}
-            height={400}
-            patternUnits="userSpaceOnUse"
-            overflow="visible"
-          >
-            {paths.map((d, i) => (
-              <path
-                key={i}
-                d={d}
-                fill="none"
-                stroke={stroke}
-                strokeWidth={w}
-                pathLength={1}
-                className={`puzzle-bg-line puzzle-bg-line-${i}`}
-              />
-            ))}
-          </pattern>
-          <linearGradient id="puzzle-fade" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="white" stopOpacity="0" />
-            <stop offset="75%" stopColor="white" stopOpacity="0" />
-            <stop offset="100%" stopColor="white" stopOpacity="1" />
-          </linearGradient>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#puzzle-bg)" />
-        <rect width="100%" height="100%" fill="url(#puzzle-fade)" />
-      </svg>
-
-      {/* Wandering glow overlay */}
-      <div
-        className="puzzle-bg-glow-overlay absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 40% 40% at 50% 50%, rgba(65,0,152,0.08), transparent 70%)",
-          backgroundSize: "200% 200%",
-        }}
-      />
-    </>
-  );
 }
