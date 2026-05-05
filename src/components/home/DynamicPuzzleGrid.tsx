@@ -23,7 +23,7 @@ const ANIMATION_SLOTS = [
 type EdgeKind = "tab" | "socket" | "flat";
 type PieceEdges = { top: EdgeKind; right: EdgeKind; bottom: EdgeKind; left: EdgeKind };
 
-const PIECE_SIZE = 230;
+const PIECE_SIZE = 232;
 const GRID_WIDTH = PIECE_SIZE * 3;
 const GRID_HEIGHT = PIECE_SIZE * 2;
 const JOINT_START = Math.round(PIECE_SIZE * 0.38);
@@ -38,13 +38,13 @@ const VIEWBOX_HEIGHT = GRID_HEIGHT + BOARD_PADDING * 2;
 
 const PIECE_EDGE_MAP: PieceEdges[] = [
   // row 1
-  { top: "tab", right: "tab", bottom: "tab", left: "tab" },
-  { top: "tab", right: "tab", bottom: "socket", left: "socket" },
-  { top: "socket", right: "tab", bottom: "tab", left: "socket" },
+  { top: "flat", right: "tab", bottom: "tab", left: "flat" },
+  { top: "flat", right: "tab", bottom: "socket", left: "socket" },
+  { top: "flat", right: "flat", bottom: "tab", left: "socket" },
   // row 2
-  { top: "socket", right: "socket", bottom: "tab", left: "tab" },
-  { top: "tab", right: "socket", bottom: "socket", left: "tab" },
-  { top: "socket", right: "socket", bottom: "tab", left: "tab" },
+  { top: "socket", right: "socket", bottom: "flat", left: "flat" },
+  { top: "tab", right: "socket", bottom: "flat", left: "tab" },
+  { top: "socket", right: "flat", bottom: "flat", left: "tab" },
 ];
 
 const PIECE_CENTERS: [number, number][] = [
@@ -213,7 +213,14 @@ function PuzzlePieceSVG({ item, index }: { item: DynamicPuzzleItem; index: numbe
     >
       <path d={path} fill={`url(#puzzle-grid-grad-${index})`} />
 
-      <circle cx={contentX} cy={contentY - 22} r={22} fill="rgba(255,255,255,0.15)" />
+      <circle
+        cx={contentX}
+        cy={contentY - 22}
+        r={22}
+        fill="rgba(255,255,255,0.15)"
+        className="puzzle-piece-orb"
+        style={{ animationDelay: `calc(${slot.delay} + 1200ms)` }}
+      />
       <foreignObject x={contentX - 14} y={contentY - 36} width={28} height={28}>
         <div className="flex h-full items-center justify-center">
           <Icon size={20} strokeWidth={1.8} color="white" />

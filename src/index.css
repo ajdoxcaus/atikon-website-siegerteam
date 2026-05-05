@@ -423,6 +423,17 @@
   }
 }
 
+@keyframes puzzle-orb-pulse {
+  0%, 100% {
+    opacity: 0.72;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
 @utility animate-hero-stagger {
   animation: hero-stagger-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -433,6 +444,11 @@
 
 .puzzle-glow {
   animation: hero-glow 1.2s ease 1.35s both;
+}
+
+.puzzle-piece-orb {
+  transform-origin: center;
+  animation: puzzle-orb-pulse 3.2s ease-in-out infinite;
 }
 
 /* ── Background puzzle animations ── */

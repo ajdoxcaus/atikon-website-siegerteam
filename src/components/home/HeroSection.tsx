@@ -44,8 +44,8 @@ export function HeroSection() {
         />
       </div>
 
-      <div className="container-max relative py-16 sm:py-20 lg:py-28 xl:py-32">
-        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:gap-10 xl:gap-14">
+      <div className="container-max relative py-20 sm:py-24 lg:py-32 xl:py-36">
+        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.84fr)_minmax(0,1.16fr)] lg:gap-10 xl:gap-14">
           {/* Copy */}
           <div className="max-w-xl">
             <div className="animate-hero-stagger" style={{ animationDelay: "0ms" }}>
@@ -104,7 +104,7 @@ export function HeroSection() {
           </div>
 
           {/* Puzzle visual */}
-          <div className="relative w-full">
+          <div className="relative w-full lg:w-[102%] xl:w-[106%] lg:max-w-none lg:justify-self-end">
             <PuzzleHero intent={intent} />
           </div>
         </div>
