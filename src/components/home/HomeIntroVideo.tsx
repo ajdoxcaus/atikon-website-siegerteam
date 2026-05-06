@@ -1,26 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const VIDEO_OPEN_URL =
   "https://drive.google.com/file/d/1WKejkg-LNws2jJn_86Gb7NWMPuTnzfYA/view?usp=drive_link";
-const VIDEO_EMBED_URL =
-  "https://drive.google.com/file/d/1WKejkg-LNws2jJn_86Gb7NWMPuTnzfYA/preview";
-const AUTO_CONTINUE_AFTER_MS = 69_000;
+const LOCAL_VIDEO_SRC = "/video/latest_video.mp4";
 
 export function HomeIntroVideo() {
   const [isOpen, setIsOpen] = useState(true);
-
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const startTs = Date.now();
-    const interval = window.setInterval(() => {
-      if (Date.now() - startTs >= AUTO_CONTINUE_AFTER_MS) {
-        setIsOpen(false);
-      }
-    }, 500);
-
-    return () => window.clearInterval(interval);
-  }, [isOpen]);
 
   function openVideoInNewTabAndContinue() {
     window.open(VIDEO_OPEN_URL, "_blank", "noopener,noreferrer");
@@ -31,14 +16,15 @@ export function HomeIntroVideo() {
 
   return (
     <div className="fixed inset-0 z-120 bg-black">
-      <iframe
-        src={VIDEO_EMBED_URL}
-        title="Atikon Intro Video"
-        allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-        frameBorder={0}
-        width="100%"
-        height="100%"
-        allowFullScreen
+      <video
+        className="h-full w-full object-contain bg-black"
+        src={LOCAL_VIDEO_SRC}
+        autoPlay
+        muted
+        playsInline
+        controls
+        onEnded={() => setIsOpen(false)}
+        onError={() => setIsOpen(false)}
       />
 
       <div className="pointer-events-none absolute inset-x-0 top-0 bg-linear-to-b from-black/75 to-transparent p-5 sm:p-6">
