@@ -13,6 +13,7 @@ const FOOTER_LINKS = {
     { label: "AI Studio", to: "/ai-studio" },
     { label: "Lead Management", to: "/lead-management" },
     { label: "Social Media", to: "/social-media" },
+    { label: "Content & Marketing", to: "/content" },
   ],
   Unternehmen: [
     { label: "Warum Atikon", to: "/warum-atikon" },

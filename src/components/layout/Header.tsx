@@ -69,7 +69,7 @@ const NAV_ITEMS: NavItem[] = [
         icon: Sparkles,
       },
       {
-        to: "/#module",
+        to: "/content",
         label: "Content & Marketing",
         description: "Steuernews, Rechner und Textservice ohne Aufwand.",
         icon: FileText,

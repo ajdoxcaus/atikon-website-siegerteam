@@ -12,48 +12,26 @@ export type DynamicPuzzleItem = {
 };
 
 const ANIMATION_SLOTS = [
-  { delay: "100ms", from: "translate(-60px, -40px)" },
-  { delay: "300ms", from: "translate(0, -70px)" },
-  { delay: "500ms", from: "translate(60px, -40px)" },
-  { delay: "700ms", from: "translate(-60px, 40px)" },
-  { delay: "850ms", from: "translate(0, 70px)" },
+  { delay: "100ms",  from: "translate(-60px, -40px)" },
+  { delay: "300ms",  from: "translate(0, -70px)" },
+  { delay: "500ms",  from: "translate(60px, -40px)" },
+  { delay: "700ms",  from: "translate(-60px, 40px)" },
+  { delay: "850ms",  from: "translate(0, 70px)" },
   { delay: "1000ms", from: "translate(60px, 40px)" },
 ] as const;
 
-type EdgeKind = "tab" | "socket" | "flat";
-type PieceEdges = { top: EdgeKind; right: EdgeKind; bottom: EdgeKind; left: EdgeKind };
-
-const PIECE_SIZE = 232;
-const GRID_WIDTH = PIECE_SIZE * 3;
-const GRID_HEIGHT = PIECE_SIZE * 2;
-const JOINT_START = Math.round(PIECE_SIZE * 0.38);
-const JOINT_END = Math.round(PIECE_SIZE * 0.62);
-const JOINT_MID = Math.round(PIECE_SIZE * 0.5);
-const JOINT_DEPTH = Math.round(PIECE_SIZE * 0.12);
-const JOINT_INNER_A = Math.round(PIECE_SIZE * 0.4);
-const JOINT_INNER_B = Math.round(PIECE_SIZE * 0.6);
-const BOARD_PADDING = JOINT_DEPTH;
-const VIEWBOX_WIDTH = GRID_WIDTH + BOARD_PADDING * 2;
-const VIEWBOX_HEIGHT = GRID_HEIGHT + BOARD_PADDING * 2;
-
-const PIECE_EDGE_MAP: PieceEdges[] = [
-  // row 1
-  { top: "flat", right: "tab", bottom: "tab", left: "flat" },
-  { top: "flat", right: "tab", bottom: "socket", left: "socket" },
-  { top: "flat", right: "flat", bottom: "tab", left: "socket" },
-  // row 2
-  { top: "socket", right: "socket", bottom: "flat", left: "flat" },
-  { top: "tab", right: "socket", bottom: "flat", left: "tab" },
-  { top: "socket", right: "flat", bottom: "flat", left: "tab" },
+const PIECE_PATHS = [
+  "M0,0 L200,0 L200,76 C200,76 224,80 224,100 C224,120 200,124 200,124 L200,200 L124,200 C124,200 120,224 100,224 C80,224 76,200 76,200 L0,200 Z",
+  "M200,0 L400,0 L400,76 C400,76 424,80 424,100 C424,120 400,124 400,124 L400,200 L324,200 C324,200 320,176 300,176 C280,176 276,200 276,200 L200,200 L200,124 C200,124 224,120 224,100 C224,80 200,76 200,76 Z",
+  "M400,0 L600,0 L600,200 L524,200 C524,200 520,224 500,224 C480,224 476,200 476,200 L400,200 L400,124 C400,124 424,120 424,100 C424,80 400,76 400,76 Z",
+  "M0,200 L76,200 C76,200 80,224 100,224 C120,224 124,200 124,200 L200,200 L200,276 C200,276 176,280 176,300 C176,320 200,324 200,324 L200,400 L0,400 Z",
+  "M200,200 L276,200 C276,200 280,176 300,176 C320,176 324,200 324,200 L400,200 L400,276 C400,276 376,280 376,300 C376,320 400,324 400,324 L400,400 L200,400 L200,324 C200,324 176,320 176,300 C176,280 200,276 200,276 Z",
+  "M400,200 L476,200 C476,200 480,224 500,224 C520,224 524,200 524,200 L600,200 L600,400 L400,400 L400,324 C400,324 376,320 376,300 C376,280 400,276 400,276 Z",
 ];
 
 const PIECE_CENTERS: [number, number][] = [
-  [PIECE_SIZE * 0.5, PIECE_SIZE * 0.5],
-  [PIECE_SIZE * 1.5, PIECE_SIZE * 0.5],
-  [PIECE_SIZE * 2.5, PIECE_SIZE * 0.5],
-  [PIECE_SIZE * 0.5, PIECE_SIZE * 1.5],
-  [PIECE_SIZE * 1.5, PIECE_SIZE * 1.5],
-  [PIECE_SIZE * 2.5, PIECE_SIZE * 1.5],
+  [100, 100], [300, 100], [500, 100],
+  [100, 300], [300, 300], [500, 300],
 ];
 
 const GRADIENTS: [string, string][] = [
@@ -65,127 +43,106 @@ const GRADIENTS: [string, string][] = [
   ["#D93A10", "#FA4616"],
 ];
 
-function edgeDir(kind: EdgeKind, positiveDir: 1 | -1) {
-  if (kind === "flat") {
-    return 0;
-  }
-  return kind === "tab" ? positiveDir : -positiveDir;
-}
-
-function buildPiecePath(x: number, y: number, edges: PieceEdges) {
-  const x0 = x;
-  const y0 = y;
-  const x1 = x + PIECE_SIZE;
-  const y1 = y + PIECE_SIZE;
-
-  const t = edgeDir(edges.top, -1);
-  const r = edgeDir(edges.right, 1);
-  const b = edgeDir(edges.bottom, 1);
-  const l = edgeDir(edges.left, -1);
-
-  const top = t
-    ? `L${x + JOINT_START},${y0} C${x + JOINT_START},${y0} ${x + JOINT_INNER_A},${y0 + t * JOINT_DEPTH} ${x + JOINT_MID},${y0 + t * JOINT_DEPTH} C${x + JOINT_INNER_B},${y0 + t * JOINT_DEPTH} ${x + JOINT_END},${y0} ${x + JOINT_END},${y0} L${x1},${y0}`
-    : `L${x1},${y0}`;
-  const right = r
-    ? `L${x1},${y + JOINT_START} C${x1},${y + JOINT_START} ${x1 + r * JOINT_DEPTH},${y + JOINT_INNER_A} ${x1 + r * JOINT_DEPTH},${y + JOINT_MID} C${x1 + r * JOINT_DEPTH},${y + JOINT_INNER_B} ${x1},${y + JOINT_END} ${x1},${y + JOINT_END} L${x1},${y1}`
-    : `L${x1},${y1}`;
-  const bottom = b
-    ? `L${x + JOINT_END},${y1} C${x + JOINT_END},${y1} ${x + JOINT_INNER_B},${y1 + b * JOINT_DEPTH} ${x + JOINT_MID},${y1 + b * JOINT_DEPTH} C${x + JOINT_INNER_A},${y1 + b * JOINT_DEPTH} ${x + JOINT_START},${y1} ${x + JOINT_START},${y1} L${x0},${y1}`
-    : `L${x0},${y1}`;
-  const left = l
-    ? `L${x0},${y + JOINT_END} C${x0},${y + JOINT_END} ${x0 + l * JOINT_DEPTH},${y + JOINT_INNER_B} ${x0 + l * JOINT_DEPTH},${y + JOINT_MID} C${x0 + l * JOINT_DEPTH},${y + JOINT_INNER_A} ${x0},${y + JOINT_START} ${x0},${y + JOINT_START} L${x0},${y0}`
-    : `L${x0},${y0}`;
-
-  return `M${x0},${y0} ${top} ${right} ${bottom} ${left} Z`;
-}
-
-const PIECE_PATHS = PIECE_EDGE_MAP.map((edges, idx) => {
-  const col = idx % 3;
-  const row = Math.floor(idx / 3);
-  return buildPiecePath(col * PIECE_SIZE, row * PIECE_SIZE, edges);
-});
-
-const EMPTY_BG_POSITIONS: [number, number][] = [
-  [-GRID_WIDTH * 2, -GRID_HEIGHT],
-  [-GRID_WIDTH, -GRID_HEIGHT],
-  [0, -GRID_HEIGHT],
-  [GRID_WIDTH, -GRID_HEIGHT],
-  [GRID_WIDTH * 2, -GRID_HEIGHT],
-  [-GRID_WIDTH * 2, 0],
-  [-GRID_WIDTH, 0],
-  [0, 0],
-  [GRID_WIDTH, 0],
-  [GRID_WIDTH * 2, 0],
-  [-GRID_WIDTH * 2, GRID_HEIGHT],
-  [-GRID_WIDTH, GRID_HEIGHT],
-  [0, GRID_HEIGHT],
-  [GRID_WIDTH, GRID_HEIGHT],
-  [GRID_WIDTH * 2, GRID_HEIGHT],
-];
+/*
+ * The SVG viewBox is "0 0 600 400" = the coloured board.
+ * overflow="visible" lets the background tiles bleed outside.
+ * The hero section's own overflow:hidden clips cleanly at the page edge.
+ *
+ * Background tile rect covers:
+ *   x: -1200 … 1800  (2 board-widths left + 3 board-widths right)
+ *   y:  -800 … 1200  (2 board-heights above + 3 board-heights below)
+ * This is more than enough to fill any viewport, including the hero
+ * bottom-padding area where tiles must be visible below the board.
+ */
+const BG_X = -1200;
+const BG_Y = -800;
+const BG_W = 3000;
+const BG_H = 2000;
 
 export function DynamicPuzzleGrid({ items }: { items: DynamicPuzzleItem[] }) {
   const pieces = items.slice(0, 6);
-  const insetStyle: React.CSSProperties = {
-    left: `${(BOARD_PADDING / VIEWBOX_WIDTH) * 100}%`,
-    right: `${(BOARD_PADDING / VIEWBOX_WIDTH) * 100}%`,
-    top: `${(BOARD_PADDING / VIEWBOX_HEIGHT) * 100}%`,
-    bottom: `${(BOARD_PADDING / VIEWBOX_HEIGHT) * 100}%`,
-  };
 
   return (
-    <div className="puzzle-glow relative mx-auto w-full" aria-label="Module als Puzzle-Teile">
+    <div
+      className="puzzle-glow relative mx-auto w-full"
+      aria-label="taxHub Plattform – 6 Module setzen sich als Puzzle zusammen"
+    >
       <svg
-        viewBox={`-${BOARD_PADDING} -${BOARD_PADDING} ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
-        className="h-auto w-full overflow-visible"
+        viewBox="0 0 600 400"
+        /* overflow="visible" is the SVG attribute; style ensures browsers honour it */
+        overflow="visible"
+        style={{ overflow: "visible" }}
+        className="block h-auto w-full"
         xmlns="http://www.w3.org/2000/svg"
-        shapeRendering="geometricPrecision"
       >
         <defs>
+          {/*
+           * patternUnits="userSpaceOnUse" + x=0 y=0 pins the tile grid to the
+           * board's own coordinate system, so seams always match perfectly.
+           */}
+          <pattern
+            id="puzzle-bg-repeat"
+            x={0} y={0}
+            width={600} height={400}
+            patternUnits="userSpaceOnUse"
+          >
+            {PIECE_PATHS.map((d, i) => (
+              <path
+                key={i}
+                d={d}
+                fill="none"
+                stroke="rgba(65,0,152,0.07)"
+                strokeWidth={1.25}
+              />
+            ))}
+          </pattern>
+
+          {/* rounded clip for the coloured board */}
+          <clipPath id="board-clip">
+            <rect x={0} y={0} width={600} height={400} rx={12} />
+          </clipPath>
+
+          {pieces.map((_, i) => (
+            <clipPath key={`clip-${i}`} id={`puzzle-clip-${i}`}>
+              <path d={PIECE_PATHS[i]} />
+            </clipPath>
+          ))}
+
           {GRADIENTS.map(([from, to], i) => (
-            <linearGradient key={`grad-${i}`} id={`puzzle-grid-grad-${i}`} x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor={from} />
-              <stop offset="100%" stopColor={to} />
+            <linearGradient
+              key={`grad-${i}`}
+              id={`puzzle-grid-grad-${i}`}
+              x1="0" y1="0" x2="1" y2="1"
+            >
+              <stop offset="0%"   stopColor={from} />
+              <stop offset="100%" stopColor={to}   />
             </linearGradient>
           ))}
         </defs>
 
-        {/* Empty puzzle background matrix (same geometry, full backdrop) */}
-        <g pointerEvents="none">
-          {EMPTY_BG_POSITIONS.map(([tx, ty], cluster) =>
-            PIECE_PATHS.map((d, i) => (
-              <path
-                key={`empty-${cluster}-${i}`}
-                d={d}
-                transform={`translate(${tx} ${ty})`}
-                fill="rgba(65,0,152,0.035)"
-                stroke="rgba(65,0,152,0.16)"
-                strokeWidth="1"
-              />
-            )),
-          )}
-        </g>
+        {/* ── Background tiles (spill outside viewBox via overflow:visible) ── */}
+        <rect
+          x={BG_X} y={BG_Y}
+          width={BG_W} height={BG_H}
+          fill="url(#puzzle-bg-repeat)"
+        />
 
-        {pieces.map((item, i) => (
-          <PuzzlePieceSVG key={item.label} item={item} index={i} />
-        ))}
-
-        {/* Draw seams once on top so the puzzle reads as one assembled board */}
-        <g pointerEvents="none">
-          {PIECE_PATHS.map((d, i) => (
-            <path key={`seam-${i}`} d={d} fill="none" stroke="rgba(65,0,152,0.26)" strokeWidth="1.1" />
+        {/* ── Coloured board ── */}
+        <g clipPath="url(#board-clip)">
+          <PuzzleGridLines />
+          {pieces.map((item, i) => (
+            <PuzzlePieceSVG key={item.label} item={item} index={i} />
           ))}
         </g>
       </svg>
 
-      <div
-        className="absolute grid grid-cols-3 grid-rows-2"
-        style={insetStyle}
-      >
+      {/* Link overlays sit over the coloured board only */}
+      <div className="absolute inset-0 grid grid-cols-3 grid-rows-2 overflow-hidden rounded-2xl">
         {pieces.map((item) => (
           <Link
             key={`link-${item.label}`}
             to={item.to}
-            className="block"
+            className="block transition-colors duration-200 hover:bg-white/10"
             aria-label={`${item.label} – ${item.desc}`}
           />
         ))}
@@ -197,10 +154,9 @@ export function DynamicPuzzleGrid({ items }: { items: DynamicPuzzleItem[] }) {
 function PuzzlePieceSVG({ item, index }: { item: DynamicPuzzleItem; index: number }) {
   const Icon = item.icon;
   const slot = ANIMATION_SLOTS[index] ?? ANIMATION_SLOTS[0];
-  const path = PIECE_PATHS[index];
   const [cx, cy] = PIECE_CENTERS[index] ?? [100, 100];
   const contentX = cx + (item.contentOffsetX ?? 0);
-  const contentY = cy + (item.contentOffsetY ?? -4);
+  const contentY = cy + (item.contentOffsetY ?? 0);
 
   return (
     <g
@@ -208,36 +164,48 @@ function PuzzlePieceSVG({ item, index }: { item: DynamicPuzzleItem; index: numbe
       style={{
         animationDelay: slot.delay,
         "--puzzle-from": slot.from,
-        transformOrigin: `${cx}px ${cy}px`,
+        transformOrigin: `${contentX}px ${contentY}px`,
       } as React.CSSProperties}
+      clipPath={`url(#puzzle-clip-${index})`}
     >
-      <path d={path} fill={`url(#puzzle-grid-grad-${index})`} />
+      <rect x={cx - 100} y={cy - 100} width={200} height={200} fill={`url(#puzzle-grid-grad-${index})`} />
+      <path d={PIECE_PATHS[index]} fill={`url(#puzzle-grid-grad-${index})`} />
 
-      <circle
-        cx={contentX}
-        cy={contentY - 22}
-        r={22}
-        fill="rgba(255,255,255,0.15)"
-        className="puzzle-piece-orb"
-        style={{ animationDelay: `calc(${slot.delay} + 1200ms)` }}
-      />
-      <foreignObject x={contentX - 14} y={contentY - 36} width={28} height={28}>
+      <circle cx={contentX} cy={contentY - 20} r={22} fill="rgba(255,255,255,0.15)" />
+      <foreignObject x={contentX - 14} y={contentY - 34} width={28} height={28}>
         <div className="flex h-full items-center justify-center">
           <Icon size={20} strokeWidth={1.8} color="white" />
         </div>
       </foreignObject>
 
-      <foreignObject x={contentX - 84} y={contentY + 6} width={168} height={66}>
-        <div className="flex h-full flex-col items-center text-center">
-          <p className="text-[13px] font-bold leading-tight text-white">{item.label}</p>
-          <p className="mt-1 text-[10px] leading-tight text-white/75">{item.desc}</p>
-          {item.example && (
-            <p className="mt-1 text-[9px] font-medium leading-tight text-white/90">
-              z. B. {item.example}
-            </p>
-          )}
-        </div>
-      </foreignObject>
+      <text x={contentX} y={contentY + 16} textAnchor="middle" fill="white" fontSize={13} fontWeight={700} fontFamily="var(--font-sans)">
+        {item.label}
+      </text>
+      <text x={contentX} y={contentY + 34} textAnchor="middle" fill="rgba(255,255,255,0.7)" fontSize={9} fontFamily="var(--font-sans)">
+        {item.desc}
+      </text>
+    </g>
+  );
+}
+
+function PuzzleGridLines() {
+  const c = "rgba(65,0,152,0.12)";
+  const w = 2.5;
+  return (
+    <g className="animate-hero-stagger" style={{ animationDelay: "1200ms" } as React.CSSProperties}>
+      <path
+        d={["M0,200","L76,200 C76,200 80,224 100,224 C120,224 124,200 124,200","L200,200","L276,200 C276,200 280,176 300,176 C320,176 324,200 324,200","L400,200","L476,200 C476,200 480,224 500,224 C520,224 524,200 524,200","L600,200"].join(" ")}
+        fill="none" stroke={c} strokeWidth={w}
+      />
+      <path
+        d={["M200,0","L200,76 C200,76 224,80 224,100 C224,120 200,124 200,124","L200,200","L200,276 C200,276 176,280 176,300 C176,320 200,324 200,324","L200,400"].join(" ")}
+        fill="none" stroke={c} strokeWidth={w}
+      />
+      <path
+        d={["M400,0","L400,76 C400,76 424,80 424,100 C424,120 400,124 400,124","L400,200","L400,276 C400,276 376,280 376,300 C376,320 400,324 400,324","L400,400"].join(" ")}
+        fill="none" stroke={c} strokeWidth={w}
+      />
+      <rect x={0} y={0} width={600} height={400} fill="none" stroke={c} strokeWidth={w} rx={12} />
     </g>
   );
 }

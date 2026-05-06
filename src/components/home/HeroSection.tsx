@@ -120,11 +120,11 @@ type Piece = DynamicPuzzleItem;
 const PUZZLE_SETS: Record<Intent, Piece[]> = {
   default: [
     { label: "Website",             icon: Globe,    desc: "Professioneller Kanzlei-Auftritt",  to: "/#module", example: "Startseite, Team, Leistungen", contentOffsetX: 6 },
-    { label: "Content & Marketing", icon: FileText, desc: "Steuernews & Textservice",          to: "/#module" },
+    { label: "Content & Marketing", icon: FileText, desc: "Steuernews & Textservice",          to: "/content" },
     { label: "AI Studio",           icon: Sparkles, desc: "KI-Workspace für Kanzleien",        to: "/ai-studio", example: "Fach-Chat, Meeting-Agent" },
     { label: "Lead Management",     icon: Target,   desc: "Mandantengewinnung digital",        to: "/#module" },
     { label: "Newsletter",          icon: Mail,     desc: "Personalisierte Mandantenbindung",  to: "/newsletter", example: "Steuernews automatisch" },
-    { label: "Social Media",        icon: Share2,   desc: "Social aus einer Hand",             to: "/#module", example: "Redaktionsplan & Posts" },
+    { label: "Social Media",        icon: Share2,   desc: "Social aus einer Hand",             to: "/social-media", example: "Redaktionsplan & Posts" },
   ],
   newsletter: [
     { label: "Kanzlei-Design",      icon: Palette,           desc: "Ihr CI, Ihre Farben, Ihr Logo",      to: "/newsletter" },
