@@ -2,10 +2,40 @@ export function StorytellingPage() {
   return (
     <section className="bg-white py-16 sm:py-20">
       <div className="container-max max-w-5xl">
-        <p className="text-sm font-semibold uppercase tracking-wide text-atikon-orange">
-          Storytelling
-        </p>
-        <h1 className="mt-2 text-3xl font-extrabold leading-tight text-atikon-violet sm:text-4xl">
+        <section className="rounded-2xl border border-atikon-violet/20 bg-atikon-violet/4 p-6 sm:p-8">
+          <p className="text-sm font-semibold uppercase tracking-wide text-atikon-orange">
+            Kurzform als Claim-Block
+          </p>
+          <h2 className="mt-2 text-2xl font-extrabold text-atikon-violet">
+            Atikon taxHub
+          </h2>
+          <p className="mt-2 text-lg font-semibold text-neutral-900">
+            Die Plattform für Kanzleiwachstum und digitale Kanzlei-Tools.
+          </p>
+          <p className="mt-4 text-neutral-700">
+            Ein Login. Ein Markenauftritt. Ein Datenfluss. Ein Weg zum Termin.
+            Eine vernetzte Welt für Kanzlei und Mandant.
+          </p>
+          <p className="mt-3 text-neutral-700">
+            Der taxHub bündelt Website, Newsletter, KI, Lead Management, Social
+            Media und Content in einem System. Künftig wird er zusätzlich zum
+            Marktplatz für nützliche Steuerberater-Tools wie BeraterCockpit,
+            Meeting Agent und weitere digitale Anwendungen. Auch externe Apps
+            können direkt eingebunden werden – per Single Sign-on und ohne
+            Systembruch.
+          </p>
+          <p className="mt-3 text-neutral-700">
+            So wird aus verstreutem Marketing ein steuerbarer Prozess. Und aus
+            einzelnen Tools ein digitales Ökosystem für moderne
+            Steuerkanzleien.
+          </p>
+          <p className="mt-3 font-semibold text-neutral-900">
+            Kanzleimarketing, Tools und Mandantenkommunikation, die endlich
+            zusammenarbeiten.
+          </p>
+        </section>
+
+        <h1 className="mt-12 text-3xl font-extrabold leading-tight text-atikon-violet sm:text-4xl">
           Storytelling der neuen Atikon-Website
         </h1>
         <p className="mt-4 text-lg font-semibold text-neutral-800">
@@ -209,38 +239,6 @@ export function StorytellingPage() {
           </section>
         </article>
 
-        <section className="mt-12 rounded-2xl border border-atikon-violet/20 bg-atikon-violet/4 p-6 sm:p-8">
-          <p className="text-sm font-semibold uppercase tracking-wide text-atikon-orange">
-            Kurzform als Claim-Block
-          </p>
-          <h2 className="mt-2 text-2xl font-extrabold text-atikon-violet">
-            Atikon taxHub
-          </h2>
-          <p className="mt-2 text-lg font-semibold text-neutral-900">
-            Die Plattform für Kanzleiwachstum und digitale Kanzlei-Tools.
-          </p>
-          <p className="mt-4 text-neutral-700">
-            Ein Login. Ein Markenauftritt. Ein Datenfluss. Ein Weg zum Termin.
-            Eine vernetzte Welt für Kanzlei und Mandant.
-          </p>
-          <p className="mt-3 text-neutral-700">
-            Der taxHub bündelt Website, Newsletter, KI, Lead Management, Social
-            Media und Content in einem System. Künftig wird er zusätzlich zum
-            Marktplatz für nützliche Steuerberater-Tools wie BeraterCockpit,
-            Meeting Agent und weitere digitale Anwendungen. Auch externe Apps
-            können direkt eingebunden werden – per Single Sign-on und ohne
-            Systembruch.
-          </p>
-          <p className="mt-3 text-neutral-700">
-            So wird aus verstreutem Marketing ein steuerbarer Prozess. Und aus
-            einzelnen Tools ein digitales Ökosystem für moderne
-            Steuerkanzleien.
-          </p>
-          <p className="mt-3 font-semibold text-neutral-900">
-            Kanzleimarketing, Tools und Mandantenkommunikation, die endlich
-            zusammenarbeiten.
-          </p>
-        </section>
       </div>
     </section>
   );
