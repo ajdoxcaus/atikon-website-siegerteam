@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   Menu,
   X,
-  LogIn,
+  LogOut,
   ChevronDown,
   Globe,
   Mail,
@@ -46,7 +46,7 @@ const NAV_ITEMS: NavItem[] = [
         icon: LayoutDashboard,
       },
       {
-        to: "/#plattform",
+        to: "/home#plattform",
         label: "Plattformvorteile",
         description: "Warum eine integrierte Lösung den Unterschied macht.",
         icon: BarChart3,
@@ -57,7 +57,7 @@ const NAV_ITEMS: NavItem[] = [
     label: "Module",
     children: [
       {
-        to: "/#module",
+        to: "/home#module",
         label: "Kanzlei-Website",
         description: "Professioneller Auftritt in 12 Wochen online.",
         icon: Globe,
@@ -87,7 +87,7 @@ const NAV_ITEMS: NavItem[] = [
         icon: Share2,
       },
       {
-        to: "/#module",
+        to: "/home#module",
         label: "Lead Management",
         description: "Mandantengewinnung über digitale Kampagnen.",
         icon: Target,
@@ -148,6 +148,8 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
 ];
+const LOGOUT_VIDEO_URL =
+  "https://www.capcut.com/presentation/7637059179253104661?workspaceId=7636305603144482837&utm_source=share&utm_medium=product";
 
 function scrollToHash(hash: string) {
   const el = document.getElementById(hash);
@@ -165,8 +167,8 @@ export function Header() {
   const handleHashClick = useCallback(
     (e: React.MouseEvent, hash: string) => {
       e.preventDefault();
-      if (pathname !== "/") {
-        navigate("/");
+      if (pathname !== "/home") {
+        navigate("/home");
         requestAnimationFrame(() =>
           setTimeout(() => scrollToHash(hash), 80),
         );
@@ -179,8 +181,8 @@ export function Header() {
 
   const handleLinkClick = useCallback(
     (e: React.MouseEvent, to: string) => {
-      if (to.startsWith("/#")) {
-        handleHashClick(e, to.slice(2));
+      if (to.startsWith("/home#")) {
+        handleHashClick(e, to.split("#")[1] ?? "");
       }
     },
     [handleHashClick],
@@ -189,9 +191,17 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-neutral-200 bg-white/95 backdrop-blur-sm">
       <div className="container-max flex h-16 items-center justify-between lg:h-[72px]">
-        <Link to="/" className="flex items-center gap-2 shrink-0" aria-label="Atikon Startseite">
-          <Atikon />
-        </Link>
+        <div className="flex items-center gap-3 shrink-0">
+          <Link to="/home" className="flex items-center gap-2" aria-label="Atikon Startseite">
+            <Atikon />
+          </Link>
+          <Link
+            to="/storytelling"
+            className="rounded-full border border-atikon-violet/25 bg-white px-3 py-1.5 text-xs font-semibold text-atikon-violet transition-colors hover:border-atikon-violet hover:bg-atikon-violet hover:text-white sm:text-sm"
+          >
+            Storytelling
+          </Link>
+        </div>
 
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-1" aria-label="Hauptnavigation">
@@ -206,7 +216,7 @@ export function Header() {
             ) : (
               <a
                 key={item.hash}
-                href={`/#${item.hash}`}
+                href={`/home#${item.hash}`}
                 onClick={(e) => handleHashClick(e, item.hash)}
                 className="rounded-lg px-3 py-2 text-sm font-semibold text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-atikon-violet"
               >
@@ -219,11 +229,13 @@ export function Header() {
         {/* Desktop actions */}
         <div className="hidden lg:flex items-center gap-4">
           <a
-            href="#login"
+            href={LOGOUT_VIDEO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-sm font-semibold text-neutral-600 transition-colors hover:text-atikon-violet"
           >
-            <LogIn size={16} />
-            Login
+            <LogOut size={16} />
+            Logout
           </a>
           <Link
             to="/karriere"
@@ -271,7 +283,7 @@ export function Header() {
               ) : (
                 <a
                   key={item.hash}
-                  href={`/#${item.hash}`}
+                  href={`/home#${item.hash}`}
                   onClick={(e) => {
                     handleHashClick(e, item.hash);
                     setMobileOpen(false);
@@ -284,11 +296,14 @@ export function Header() {
             )}
             <hr className="my-2 border-neutral-200" />
             <a
-              href="#login"
+              href={LOGOUT_VIDEO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileOpen(false)}
               className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-semibold text-neutral-600 hover:bg-neutral-100"
             >
-              <LogIn size={16} />
-              Login
+              <LogOut size={16} />
+              Logout
             </a>
             <div className="px-3 pt-2 flex flex-col gap-2">
               <Link
@@ -377,7 +392,7 @@ function DesktopDropdown({
         >
           {items.map((child) => {
             const Icon = child.icon;
-            const isHash = child.to.startsWith("/#");
+            const isHash = child.to.startsWith("/home#");
 
             const content = (
               <div className="flex items-start gap-3 rounded-lg px-3 py-2.5 transition-colors hover:bg-neutral-50 group/item">
@@ -460,7 +475,7 @@ function MobileAccordion({
         <div className="ml-3 flex flex-col gap-0.5 border-l-2 border-neutral-100 pl-3 pb-1">
           {items.map((child) => {
             const Icon = child.icon;
-            const isHash = child.to.startsWith("/#");
+            const isHash = child.to.startsWith("/home#");
 
             const cls =
               "flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-atikon-violet";

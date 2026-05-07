@@ -1,15 +1,33 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const VIDEO_OPEN_URL =
-  "https://drive.google.com/file/d/1WKejkg-LNws2jJn_86Gb7NWMPuTnzfYA/view?usp=drive_link";
+  "https://www.capcut.com/presentation/7637059179253104661?workspaceId=7636305603144482837&utm_source=share&utm_medium=product";
 const LOCAL_VIDEO_SRC = "/video/latest_video.mp4";
 
 export function HomeIntroVideo() {
   const [isOpen, setIsOpen] = useState(true);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !isOpen) return;
+
+    video.currentTime = 0;
+    const playPromise = video.play();
+    if (playPromise) {
+      playPromise.catch(() => {
+        // If autoplay is blocked by the browser, controls stay visible for manual play.
+      });
+    }
+  }, [isOpen]);
+
+  function closeIntro() {
+    setIsOpen(false);
+  }
 
   function openVideoInNewTabAndContinue() {
     window.open(VIDEO_OPEN_URL, "_blank", "noopener,noreferrer");
-    setIsOpen(false);
+    closeIntro();
   }
 
   if (!isOpen) return null;
@@ -17,14 +35,15 @@ export function HomeIntroVideo() {
   return (
     <div className="fixed inset-0 z-120 bg-black">
       <video
+        ref={videoRef}
         className="h-full w-full object-contain bg-black"
         src={LOCAL_VIDEO_SRC}
         autoPlay
         muted
         playsInline
         controls
-        onEnded={() => setIsOpen(false)}
-        onError={() => setIsOpen(false)}
+        onEnded={closeIntro}
+        onError={closeIntro}
       />
 
       <div className="pointer-events-none absolute inset-x-0 top-0 bg-linear-to-b from-black/75 to-transparent p-5 sm:p-6">
@@ -46,7 +65,7 @@ export function HomeIntroVideo() {
         <div className="pointer-events-auto mx-auto flex w-full max-w-6xl justify-end">
           <button
             type="button"
-            onClick={() => setIsOpen(false)}
+            onClick={closeIntro}
             className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-atikon-violet transition-colors hover:bg-neutral-100"
           >
             Weiter zur Website

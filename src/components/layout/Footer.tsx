@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, ArrowRight, LogIn } from "lucide-react";
+import { Mail, Phone, ArrowRight, LogOut } from "lucide-react";
+const LOGOUT_VIDEO_URL =
+  "https://www.capcut.com/presentation/7637059179253104661?workspaceId=7636305603144482837&utm_source=share&utm_medium=product";
 
 const FOOTER_LINKS = {
   Plattform: [
-    { label: "taxHub Übersicht", to: "/#plattform" },
-    { label: "Für Steuerkanzleien", to: "/#loesungen" },
-    { label: "Preise", to: "/#preise" },
+    { label: "taxHub Übersicht", to: "/home#plattform" },
+    { label: "Für Steuerkanzleien", to: "/home#loesungen" },
+    { label: "Preise", to: "/home#preise" },
   ],
   Module: [
     { label: "Website", to: "/website" },
@@ -87,11 +89,13 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-6 text-xs text-white/40">
             <a
-              href="#login"
+              href={LOGOUT_VIDEO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-1.5 hover:text-white/70 transition-colors"
             >
-              <LogIn size={12} />
-              Login
+              <LogOut size={12} />
+              Logout
             </a>
             <Link to="/impressum" className="hover:text-white/70 transition-colors">Impressum</Link>
             <Link to="/datenschutz" className="hover:text-white/70 transition-colors">Datenschutz</Link>

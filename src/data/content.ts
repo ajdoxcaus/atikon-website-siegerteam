@@ -32,9 +32,9 @@ export const intentVariants: Record<Intent, IntentVariant> = {
       subline:
         "Mit dem taxHub steuern Sie Website, Content, Newslettersystem, KI und Kampagnen in einem System – speziell für Steuerkanzleien.",
       cta: "Termin buchen",
-      ctaTo: "#termin",
+      ctaTo: "/terminbuchung",
       ctaSecondary: "taxHub ansehen",
-      ctaSecondaryTo: "#plattform",
+      ctaSecondaryTo: "/taxhub",
     },
     featured: {
       badge: "taxHub Plattform",

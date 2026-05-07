@@ -25,16 +25,13 @@ export function CTASection() {
           30 Minuten, die sich lohnen. Unverbindlich und persönlich.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Button to="#termin" variant="primary" size="lg">
+          <Button to="/terminbuchung" variant="primary" size="lg">
             Termin buchen
             <ArrowRight size={20} />
           </Button>
-          <a
-            href="#plattform"
-            className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 px-10 py-4 text-lg font-semibold text-white transition-colors hover:bg-white/10 hover:border-white/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-          >
+          <Button to="/taxhub" variant="secondary" size="lg">
             taxHub ansehen
-          </a>
+          </Button>
         </div>
       </div>
     </section>

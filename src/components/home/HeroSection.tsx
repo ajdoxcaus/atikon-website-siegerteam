@@ -119,10 +119,10 @@ type Piece = DynamicPuzzleItem;
 
 const PUZZLE_SETS: Record<Intent, Piece[]> = {
   default: [
-    { label: "Website",             icon: Globe,    desc: "Professioneller Kanzlei-Auftritt",  to: "/#module", example: "Startseite, Team, Leistungen", contentOffsetX: 6 },
+    { label: "Website",             icon: Globe,    desc: "Professioneller Kanzlei-Auftritt",  to: "/website", example: "Startseite, Team, Leistungen", contentOffsetX: 6 },
     { label: "Content & Marketing", icon: FileText, desc: "Steuernews & Textservice",          to: "/content" },
     { label: "AI Studio",           icon: Sparkles, desc: "KI-Workspace für Kanzleien",        to: "/ai-studio", example: "Fach-Chat, Meeting-Agent" },
-    { label: "Lead Management",     icon: Target,   desc: "Mandantengewinnung digital",        to: "/#module" },
+    { label: "Lead Management",     icon: Target,   desc: "Mandantengewinnung digital",        to: "/lead-management" },
     { label: "Newsletter",          icon: Mail,     desc: "Personalisierte Mandantenbindung",  to: "/newsletter", example: "Steuernews automatisch" },
     { label: "Social Media",        icon: Share2,   desc: "Social aus einer Hand",             to: "/social-media", example: "Redaktionsplan & Posts" },
   ],
@@ -143,20 +143,20 @@ const PUZZLE_SETS: Record<Intent, Piece[]> = {
     { label: "EU-Hosting",          icon: ShieldCheck,       desc: "Sicher in europäischen Rechenzentren", to: "/ai-studio" },
   ],
   website: [
-    { label: "Modernes Design",     icon: Palette,           desc: "Responsive & barrierefrei",           to: "/#module" },
-    { label: "Onlinetools",         icon: MousePointerClick, desc: "Rechner & Infos für Mandanten",       to: "/#module" },
-    { label: "Content-Wartung",     icon: FileText,          desc: "Laufend aktuelle Fachinhalte",        to: "/#module" },
-    { label: "SEO-optimiert",       icon: Search,            desc: "Bessere Sichtbarkeit bei Google",     to: "/#module" },
-    { label: "In 12 Wochen online", icon: TrendingUp,        desc: "Schnelle Umsetzung garantiert",       to: "/#module" },
-    { label: "taxHub-Integration",  icon: Sparkles,          desc: "Nahtlos mit allen Modulen verknüpft", to: "/#module" },
+    { label: "Modernes Design",     icon: Palette,           desc: "Responsive & barrierefrei",           to: "/website" },
+    { label: "Onlinetools",         icon: MousePointerClick, desc: "Rechner & Infos für Mandanten",       to: "/website" },
+    { label: "Content-Wartung",     icon: FileText,          desc: "Laufend aktuelle Fachinhalte",        to: "/website" },
+    { label: "SEO-optimiert",       icon: Search,            desc: "Bessere Sichtbarkeit bei Google",     to: "/website" },
+    { label: "In 12 Wochen online", icon: TrendingUp,        desc: "Schnelle Umsetzung garantiert",       to: "/website" },
+    { label: "taxHub-Integration",  icon: Sparkles,          desc: "Nahtlos mit allen Modulen verknüpft", to: "/website" },
   ],
   lead: [
-    { label: "Social Ads",          icon: Megaphone,         desc: "Kampagnen auf Meta & LinkedIn",       to: "/#module" },
-    { label: "Google Ads",          icon: Search,            desc: "Suchmaschinenmarketing mit ROI",      to: "/#module" },
-    { label: "Landing Pages",       icon: Globe,             desc: "Conversion-optimierte Zielseiten",    to: "/#module" },
-    { label: "Bewerber-Kampagnen",  icon: Users,             desc: "Fachkräfte gezielt ansprechen",       to: "/#module" },
-    { label: "Performance-Reporting", icon: BarChart3,       desc: "Monatliche Ergebnisberichte",         to: "/#module" },
-    { label: "Termin-Funnel",       icon: Target,            desc: "Vom Klick zur Mandatsanfrage",        to: "/#module" },
+    { label: "Social Ads",          icon: Megaphone,         desc: "Kampagnen auf Meta & LinkedIn",       to: "/lead-management" },
+    { label: "Google Ads",          icon: Search,            desc: "Suchmaschinenmarketing mit ROI",      to: "/lead-management" },
+    { label: "Landing Pages",       icon: Globe,             desc: "Conversion-optimierte Zielseiten",    to: "/lead-management" },
+    { label: "Bewerber-Kampagnen",  icon: Users,             desc: "Fachkräfte gezielt ansprechen",       to: "/lead-management" },
+    { label: "Performance-Reporting", icon: BarChart3,       desc: "Monatliche Ergebnisberichte",         to: "/lead-management" },
+    { label: "Termin-Funnel",       icon: Target,            desc: "Vom Klick zur Mandatsanfrage",        to: "/lead-management" },
   ],
 };
 

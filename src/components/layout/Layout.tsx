@@ -26,7 +26,12 @@ function TerminLinkInterceptor() {
       if (!anchor) return;
       const href = anchor.getAttribute("href") ?? "";
       const to = anchor.getAttribute("data-to") ?? "";
-      if (href === "#termin" || to === "#termin" || href.endsWith("/#termin")) {
+      if (
+        href === "#termin" ||
+        to === "#termin" ||
+        href.endsWith("/#termin") ||
+        href.endsWith("/home#termin")
+      ) {
         e.preventDefault();
         e.stopPropagation();
         open();
@@ -48,7 +53,7 @@ export function Layout() {
       {/* Skip link */}
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-14 focus:z-[60] focus:rounded-lg focus:bg-atikon-violet focus:px-4 focus:py-2 focus:text-white focus:text-sm focus:font-semibold focus:shadow-lg"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-14 focus:z-60 focus:rounded-lg focus:bg-atikon-violet focus:px-4 focus:py-2 focus:text-white focus:text-sm focus:font-semibold focus:shadow-lg"
       >
         Zum Inhalt springen
       </a>

@@ -72,7 +72,7 @@ export function DynamicPuzzleGrid({ items }: { items: DynamicPuzzleItem[] }) {
         /* overflow="visible" is the SVG attribute; style ensures browsers honour it */
         overflow="visible"
         style={{ overflow: "visible" }}
-        className="block h-auto w-full"
+        className="pointer-events-none block h-auto w-full"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
